@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter,} from "react-router-dom";
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import {LocaleProvider} from "antd";
-
 
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';

@@ -13,7 +13,7 @@ class App extends Component {
 
   @action toggle = () => {
     this.collapsed = !this.collapsed;
-  }
+  };
 
   render () {
     return (

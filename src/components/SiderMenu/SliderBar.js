@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import {Layout} from "antd";
-import {observable, computed} from 'mobx';
 import {observer} from 'mobx-react';
 import {Link} from "react-router-dom";
-
 
 import BaseMenu from './BaseMenu';
 import logo from "../../assets/svg/logo.svg";
 import appStore from "../../store/app";
 
-const {Sider} = Layout
+const {Sider} = Layout;
 
 @observer
 class SliderBar extends Component{

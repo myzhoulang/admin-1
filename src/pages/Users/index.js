@@ -14,7 +14,8 @@ const Option = Select.Option;
 export default class Users extends Component {
   @observable loading = false;
 
-  @action.bound load (status) {
+  @action.bound
+  load (status) {
     this.loading = status;
   }
 
@@ -69,13 +70,13 @@ export default class Users extends Component {
         <Form>
           <Row gutter={24}>
             <Col span={8}>
-              <FormItem label="规则名称" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+              <FormItem label="规则名称" labelCol={{span: 8}} wrapperCol={{span: 16}}>
                 <Input placeholder="请输入规则名称"/>
               </FormItem>
             </Col>
 
             <Col span={8}>
-              <FormItem label="规则名称" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+              <FormItem label="规则名称" labelCol={{span: 8}} wrapperCol={{span: 16}}>
                 <Select
                   showSearch
                   style={{width: "100%"}}
@@ -89,7 +90,7 @@ export default class Users extends Component {
             </Col>
 
             <Col span={8}>
-              <FormItem label="更新日期" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+              <FormItem label="更新日期" labelCol={{span: 8}} wrapperCol={{span: 16}}>
                 <DatePicker style={{width: "100%"}}/>
               </FormItem>
 
@@ -98,20 +99,20 @@ export default class Users extends Component {
 
           <Row gutter={24}>
             <Col span={8}>
-              <FormItem label="调用次数" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+              <FormItem label="调用次数" labelCol={{span: 8}} wrapperCol={{span: 16}}>
                 <Input placeholder="请输入选择"/>
               </FormItem>
 
             </Col>
 
             <Col span={8}>
-              <FormItem label="使用状态" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+              <FormItem label="使用状态" labelCol={{span: 8}} wrapperCol={{span: 16}}>
                 <Input placeholder="请输入选择"/>
               </FormItem>
             </Col>
 
             <Col span={8}>
-              <FormItem label="使用状态" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+              <FormItem label="使用状态" labelCol={{span: 8}} wrapperCol={{span: 16}}>
                 <Input placeholder="请输入选择"/>
               </FormItem>
             </Col>
@@ -135,7 +136,7 @@ export default class Users extends Component {
           style={{marginBottom: "16px"}}
           message="Success Tips"
           description="Detailed description and advices about successful copywriting."
-          type="success"
+          type="info"
           showIcon
         />
         <Spin spinning={this.loading}>
