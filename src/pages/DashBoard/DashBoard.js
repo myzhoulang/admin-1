@@ -23,9 +23,7 @@ export default class DashBoard extends Component {
   }
 
   componentDidMount () {
-    setTimeout(() => {
-      this.setStatus()
-    }, 1000)
+    this.setStatus()
   }
 
   render () {
