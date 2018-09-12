@@ -1,0 +1,125 @@
+import React, {Component} from "react";
+import {observable, action} from "mobx";
+
+import {observer} from "mobx-react";
+import {Table, Card, Form, Row, Col, Input, Select, Button, Icon, DatePicker, Alert} from 'antd';
+
+import user from "../../store/User";
+import "./index.less";
+
+const FormItem = Form.Item;
+const Option = Select.Option;
+
+@observer
+export default class Users extends Component {
+  @observable coll
+
+  componentDidMount () {
+    user.getUsers()
+  }
+
+  render () {
+    const columns = [{
+      title: '姓名',
+      dataIndex: 'name',
+      key: 'name',
+    }, {
+      title: '年龄',
+      dataIndex: 'age',
+      key: 'age',
+    }, {
+      title: '住址',
+      dataIndex: 'address',
+      key: 'address',
+    }];
+
+    const rowSelection = {
+      onChange: (selectedRowKeys, selectedRows) => {
+        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+      },
+      getCheckboxProps: record => ({
+        disabled: record.name === 'Disabled User', // Column configuration not to be checked
+        name: record.name,
+      }),
+    };
+
+    return (
+      <Card bordered={false}>
+        <Form>
+          <Row gutter={24}>
+            <Col span={8}>
+              <FormItem label="规则名称" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                <Input placeholder="请输入规则名称"/>
+              </FormItem>
+            </Col>
+
+            <Col span={8}>
+              <FormItem label="规则名称" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                <Select
+                  showSearch
+                  style={{width: "100%"}}
+                  placeholder="Select a person"
+                >
+                  <Option value="jack">Jack</Option>
+                  <Option value="lucy">Lucy</Option>
+                  <Option value="tom">Tom</Option>
+                </Select>
+              </FormItem>
+            </Col>
+
+            <Col span={8}>
+              <FormItem label="更新日期" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                <DatePicker style={{width: "100%"}}/>
+              </FormItem>
+
+            </Col>
+          </Row>
+
+          <Row gutter={24}>
+            <Col span={8}>
+              <FormItem label="调用次数" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                <Input placeholder="请输入选择"/>
+              </FormItem>
+
+            </Col>
+
+            <Col span={8}>
+              <FormItem label="使用状态" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                <Input placeholder="请输入选择"/>
+              </FormItem>
+            </Col>
+
+            <Col span={8}>
+              <FormItem label="使用状态" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                <Input placeholder="请输入选择"/>
+              </FormItem>
+            </Col>
+          </Row>
+
+          <Row gutter={24}>
+            <Col style={{textAlign: "right"}}>
+              <Button type="primary">查询</Button>
+              <Button style={{marginLeft: "8px"}}>重置</Button>
+            </Col>
+          </Row>
+        </Form>
+
+        <div className="table-operations">
+          <Button type="primary"><Icon type="plus" theme="outlined" />新建</Button>
+          <Button type="primary" style={{marginLeft: "8px"}}><Icon type="file-excel" theme="outlined" />导出</Button>
+          {/*<Button onClick={this.clearAll}>Clear filters and sorters</Button>*/}
+        </div>
+
+        <Alert
+          style={{marginBottom: "16px"}}
+          message="Success Tips"
+          description="Detailed description and advices about successful copywriting."
+          type="success"
+          showIcon
+        />
+
+        <Table rowSelection={rowSelection} dataSource={user.users} rowKey="id" columns={columns}/>
+      </Card>
+    )
+  }
+}

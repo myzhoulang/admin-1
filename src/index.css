@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; }
+
+#root {
+  height: 100%;
+  display: flex; }
+
+.sider-menu-index-logo {
+  background-color: #002140;
+  height: 64px;
+  overflow: hidden;
+  position: relative;
+  line-height: 64px;
+  transition: all .3s;
+  padding-left: 24px; }
+
+.sider-menu-index-logo img {
+  height: 32px;
+  vertical-align: middle;
+  display: inline-block; }
+
+.sider-menu-index-logo h1 {
+  color: #fff;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 0 12px;
+  vertical-align: middle; }
+
+#header {
+  padding: 0;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08); }
+
+#header .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color .3s; }
+
+#header .global-header-index-header {
+  height: 64px;
+  padding: 0 12px 0 0;
+  background-color: #fff;
+  position: relative; }
+
+#header .global-header-index-right {
+  float: right;
+  line-height: 64px; }
+
+#header .global-header-index-action {
+  padding: 0 12px;
+  height: 100%;
+  cursor: pointer;
+  display: inline-block;
+  transition: all .3s; }
+
+#header .global-header-index-action:hover {
+  background: #e6f7ff; }
+
+#header .global-header-index-action > i {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.65);
+  vertical-align: middle; }
+
+#header .global-header-index-avatar {
+  margin: 20px 8px 20px 0;
+  vertical-align: middle;
+  color: #1890ff; }

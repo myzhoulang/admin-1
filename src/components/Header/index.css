@@ -1,0 +1,16 @@
+.components-notice-index-popover {
+  width: 340px; }
+
+.notice-index-popover-inner-content .ant-popover-inner-content {
+  padding: 0; }
+
+.notice-index-popover-inner-content .ant-list-item {
+  padding-left: 24px;
+  padding-right: 24px; }
+
+.components-notice-index-notice-list-clear {
+  cursor: pointer;
+  text-align: center; }
+
+.ant-tabs-nav-scroll {
+  text-align: center; }
