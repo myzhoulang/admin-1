@@ -11,7 +11,7 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 
 @observer
-export default class Users extends Component {
+export default class Index extends Component {
   @observable loading = false;
 
   @action.bound

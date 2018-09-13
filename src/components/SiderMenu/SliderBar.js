@@ -11,12 +11,19 @@ const {Sider} = Layout;
 
 @observer
 class SliderBar extends Component{
+  breakPoint (broken) {
+    if(broken){
+      appStore.toggleSiderMenuCollapsed()
+    }
+  }
   render () {
     return (
       <Sider
         width={256}
+        breakpoint="lg"
         trigger={null}
         collapsible
+        onBreakpoint={this.breakPoint}
         collapsed={appStore.siderMenuCollapsed}
       >
         <div className="sider-menu-index-logo" key="logo" id="logo">

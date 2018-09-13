@@ -3,19 +3,47 @@ import {Icon, Menu} from "antd";
 import {Link} from "react-router-dom";
 import {ControllerIcon} from "../Icons";
 
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router'
+
 
 const SubMenu = Menu.SubMenu;
 
 class BaseMenu extends Component{
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  }
+
+  getOpenKeys () {
+    const {match, location} = this.props;
+    const selectKey = location.pathname;
+
+    const keys = {
+      sub1: ['/dashboard'],
+      sub3: ['/users']
+    }
+
+    for(let item of Object.keys(keys)) {
+      if (keys[item].find((k) => k === selectKey)) {
+        return [item]
+      }
+    }
+    return []
+  }
+
   render(){
+    const {match, location} = this.props;
     return (
       <Menu
         style={{ padding: "16px 0", width: "100%"}}
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={['1']}>
+        defaultOpenKeys={this.getOpenKeys()}
+        defaultSelectedKeys={[location.pathname]}>
         <SubMenu key="sub1" title={<span><Icon type="dashboard"/><span>实时监控</span></span>}>
-          <Menu.Item key="1">
+          <Menu.Item key="/dashboard">
             <Link to="/dashboard" className="nav-text">风控大盘</Link>
           </Menu.Item>
         </SubMenu>
@@ -30,7 +58,7 @@ class BaseMenu extends Component{
             <span className="nav-text">产品管理</span>
           </Menu.Item>
 
-          <Menu.Item key="8">
+          <Menu.Item key="/users">
             <Link to="/users" className="nav-text">用户管理</Link>
           </Menu.Item>
 
@@ -69,4 +97,4 @@ class BaseMenu extends Component{
   }
 }
 
-export default  BaseMenu
+export default   withRouter(BaseMenu)
