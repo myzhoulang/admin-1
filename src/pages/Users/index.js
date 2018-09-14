@@ -1,17 +1,16 @@
 import React, {Component} from "react";
 import {observable, action, runInAction} from "mobx";
-
 import {observer} from "mobx-react";
 import {Table, Card, Form, Row, Col, Input, Select, Button, Icon, DatePicker, Alert, Spin} from 'antd';
 
 import user from "../../store/User";
 import "./index.less";
-
+//
 const FormItem = Form.Item;
 const Option = Select.Option;
 
 @observer
-export default class Index extends Component {
+export default class List extends Component {
   @observable loading = false;
 
   @action.bound

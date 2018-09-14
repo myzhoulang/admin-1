@@ -6,7 +6,6 @@ import {ControllerIcon} from "../Icons";
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
 
-
 const SubMenu = Menu.SubMenu;
 
 class BaseMenu extends Component{
@@ -14,10 +13,6 @@ class BaseMenu extends Component{
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
-  }
-
-  componentWillReceiveProps (next) {
-    console.log('baseMenu', this.props, next)
   }
 
   getOpenKeys () {
@@ -48,7 +43,7 @@ class BaseMenu extends Component{
         defaultSelectedKeys={[location.pathname]}>
         <SubMenu key="sub1" title={<span><Icon type="dashboard"/><span>实时监控</span></span>}>
           <Menu.Item key="/dashboard">
-            <Link to="/dashboard" className="nav-text">风控大盘</Link>
+            <Link to="/admin/dashboard" className="nav-text">风控大盘</Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu key="sub2" title={<span><Icon type="solution" /><span>策略中心</span></span>}>
@@ -63,7 +58,7 @@ class BaseMenu extends Component{
           </Menu.Item>
 
           <Menu.Item key="/users">
-            <Link to="/users" className="nav-text">用户管理</Link>
+            <Link to="/admin/users" className="nav-text">用户管理</Link>
           </Menu.Item>
 
           <Menu.Item key="9">
