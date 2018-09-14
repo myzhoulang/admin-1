@@ -16,15 +16,18 @@ class BaseMenu extends Component{
     history: PropTypes.object.isRequired
   }
 
+  componentWillReceiveProps (next) {
+    console.log('baseMenu', this.props, next)
+  }
+
   getOpenKeys () {
     const {match, location} = this.props;
-    const selectKey = location.pathname;
 
+    const selectKey = location.pathname;
     const keys = {
       sub1: ['/dashboard'],
       sub3: ['/users']
     }
-
     for(let item of Object.keys(keys)) {
       if (keys[item].find((k) => k === selectKey)) {
         return [item]
@@ -40,6 +43,7 @@ class BaseMenu extends Component{
         style={{ padding: "16px 0", width: "100%"}}
         theme="dark"
         mode="inline"
+        selectedKeys={[location.pathname]}
         defaultOpenKeys={this.getOpenKeys()}
         defaultSelectedKeys={[location.pathname]}>
         <SubMenu key="sub1" title={<span><Icon type="dashboard"/><span>实时监控</span></span>}>
@@ -97,4 +101,4 @@ class BaseMenu extends Component{
   }
 }
 
-export default   withRouter(BaseMenu)
+export default withRouter(BaseMenu)

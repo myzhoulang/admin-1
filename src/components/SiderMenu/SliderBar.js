@@ -32,7 +32,7 @@ class SliderBar extends Component{
             <h1>孚临风控商户中心</h1>
           </Link>
         </div>
-        <BaseMenu />
+        <BaseMenu {...this.props} />
       </Sider>
     )
   }

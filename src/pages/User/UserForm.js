@@ -38,7 +38,7 @@ class UserForm extends Component {
       {name: "体验角色", id: 4}
     ];
     const {getFieldDecorator} = this.props.form;
-    return (<Form onSubmit={this.handleSubmit}>
+    return (<Form onSubmit={this.handleSubmit} style={{margin: "8px 0"}}>
       <FormItem
         {...formItemLayout}
         label="姓名"

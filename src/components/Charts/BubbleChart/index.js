@@ -12,9 +12,6 @@ import {
 
 @observer
 class BubbleChart extends React.Component {
-  componentDidMount () {
-    console.log(this.props)
-  }
 
   render () {
     const colorMap = {
