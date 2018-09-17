@@ -1,28 +1,44 @@
 import React, {Component} from 'react';
 import {Icon, Menu} from "antd";
-import {Link} from "react-router-dom";
+import {NavLink, withRouter} from "react-router-dom";
 import {ControllerIcon} from "../Icons";
+import {observable, action} from "mobx";
+import {observer} from "mobx-react";
+
 
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router'
 
 const SubMenu = Menu.SubMenu;
 
+@observer
 class BaseMenu extends Component{
+  @observable currentPaths = []
+
+  @action.bound
+  setCurrentPaths(paths = []){
+    this.currentPaths = paths;
+  }
   static propTypes = {
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
   }
 
+  componentDidMount(){
+    const {location} = this.props;
+    this.setCurrentPaths([location.pathname])
+  }
+
   getOpenKeys () {
-    const {match, location} = this.props;
+    const {location} = this.props;
 
     const selectKey = location.pathname;
+
     const keys = {
-      sub1: ['/dashboard'],
-      sub3: ['/users']
+      sub1: ['/admin/dashboard'],
+      sub3: ['/admin/users']
     }
+
     for(let item of Object.keys(keys)) {
       if (keys[item].find((k) => k === selectKey)) {
         return [item]
@@ -35,15 +51,16 @@ class BaseMenu extends Component{
     const {match, location} = this.props;
     return (
       <Menu
+        onClick={(item) => this.setCurrentPaths([item.key])}
         style={{ padding: "16px 0", width: "100%"}}
         theme="dark"
         mode="inline"
-        selectedKeys={[location.pathname]}
+        selectedKeys={this.currentPaths}
         defaultOpenKeys={this.getOpenKeys()}
         defaultSelectedKeys={[location.pathname]}>
         <SubMenu key="sub1" title={<span><Icon type="dashboard"/><span>实时监控</span></span>}>
-          <Menu.Item key="/dashboard">
-            <Link to="/admin/dashboard" className="nav-text">风控大盘</Link>
+          <Menu.Item key="/admin/dashboard">
+            <NavLink to="/admin/dashboard" className="nav-text">风控大盘</NavLink>
           </Menu.Item>
         </SubMenu>
         <SubMenu key="sub2" title={<span><Icon type="solution" /><span>策略中心</span></span>}>
@@ -57,8 +74,8 @@ class BaseMenu extends Component{
             <span className="nav-text">产品管理</span>
           </Menu.Item>
 
-          <Menu.Item key="/users">
-            <Link to="/admin/users" className="nav-text">用户管理</Link>
+          <Menu.Item key="/admin/users">
+            <NavLink to="/admin/users" className="nav-text">用户管理</NavLink>
           </Menu.Item>
 
           <Menu.Item key="9">

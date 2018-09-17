@@ -53,7 +53,6 @@ class MainContent extends Component {
 
     return (
       <React.Fragment>
-        {location.pathname}
         {breadcrumbItems.length > 0 ? (
           <div className={'page-header-index-detail'} style={{display: "flex"}}>
             <div style={{
