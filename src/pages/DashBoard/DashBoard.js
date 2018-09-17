@@ -5,11 +5,12 @@ import {observer} from "mobx-react";
 
 import mocks from "../../mocks/point-bubble-mock.json";
 
+import MainContent from "../../components/MainContent";
 import NumberInfo from '../../components/NumberInfo';
 import BarChart from "../../components/Charts/BarChart";
 import BubbleChart from "../../components/Charts/BubbleChart";
 import Donut from "../../components/Charts/Donut";
-import Line from "../../components/Charts/Line"
+import Line from "../../components/Charts/Line";
 
 import styles from './index.module.less';
 
@@ -27,7 +28,7 @@ export default class DashBoard extends Component {
 
   render () {
     return (
-      <React.Fragment>
+      <MainContent>
         <Row gutter={24}>
           <Col xl={16} lg={24} md={24} sm={24} xs={24} style={{marginBottom: 24}}>
             <Card title="活动实时交易情况" bordered={false}>
@@ -71,7 +72,7 @@ export default class DashBoard extends Component {
             </Card>
           </Col>
         </Row>
-      </React.Fragment>
+      </MainContent>
     )
   }
 }

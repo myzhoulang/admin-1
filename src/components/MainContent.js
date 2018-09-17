@@ -5,8 +5,6 @@ import {Link, withRouter} from "react-router-dom";
 import PropTypes from 'prop-types';
 import styles from "./style.module.less";
 
-console.log(styles)
-
 class MainContent extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -17,11 +15,18 @@ class MainContent extends Component {
 
   render () {
     const {title, content, extraContent, location} = this.props;
+    const pathName = location.pathname;
     const breadcrumbNameMap = {
       '/admin/users': '用户管理',
+      '/admin/users/': '用户添加',
       '/admin/users/:id': '用户详情'
     };
-    const pathSnippets = location.pathname.split('/').filter(i => i);
+    const pathSnippets = pathName.split('/').filter(i => i);
+
+    if (pathName[pathName.length - 1] === '/') {
+      pathSnippets.push('/')
+    }
+
     let breadcrumbItems = []
     const extraBreadcrumbItems = [];
     pathSnippets.map((_, index) => {
@@ -38,7 +43,7 @@ class MainContent extends Component {
       })
     });
 
-    if(extraBreadcrumbItems.length > 0) {
+    if (extraBreadcrumbItems.length > 0) {
       breadcrumbItems = [(
         <Breadcrumb.Item key="home">
           <Link to="/">Home</Link>
@@ -48,6 +53,7 @@ class MainContent extends Component {
 
     return (
       <React.Fragment>
+        {location.pathname}
         {breadcrumbItems.length > 0 ? (
           <div className={'page-header-index-detail'} style={{display: "flex"}}>
             <div style={{
@@ -71,7 +77,7 @@ class MainContent extends Component {
           </div>
         ) : null}
 
-        <div style={{margin: '24px 24px 0'}}>
+        <div style={{margin: '24px 24px 0'}} className={'a1'}>
           {this.props.children}
         </div>
       </React.Fragment>

@@ -2,8 +2,10 @@ import React, {Component} from "react";
 import {Card, Spin} from "antd";
 import {observable, action, runInAction} from "mobx";
 import {observer} from "mobx-react";
-import UserForm from "./UserForm"
-import UserBx from "../../store/User"
+
+import MainContent from "../../components/MainContent";
+import UserForm from "./UserForm";
+import UserBx from "../../store/User";
 
 @observer
 export default class User extends Component {
@@ -39,11 +41,13 @@ export default class User extends Component {
 
   render () {
     return (
-      <Card>
-        <Spin spinning={this.loadding}>
-          <UserForm user={this.user}/>
-        </Spin>
-      </Card>
+      <MainContent>
+        <Card>
+          <Spin spinning={this.loadding}>
+            <UserForm user={this.user}/>
+          </Spin>
+        </Card>
+      </MainContent>
     )
   }
 }

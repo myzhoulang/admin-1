@@ -56,7 +56,6 @@ export default class List extends Component {
   }
 
   onSelectChange (selectUsers) {
-    debugger
     this.selectUsers(selectUsers)
   }
 
