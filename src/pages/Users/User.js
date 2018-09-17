@@ -9,7 +9,7 @@ import UserBx from "../../store/User"
 export default class User extends Component {
 
   @observable user = {};
-  @observable loadding = true;
+  @observable loadding = false;
 
   @action.bound
   setUser (user) {
@@ -22,21 +22,26 @@ export default class User extends Component {
   }
 
   getUser (id) {
-    return UserBx.getUser(id)
+    return UserBx.getUser(id);
   }
 
   async componentDidMount () {
-    const {match} = this.props
-    const {user} = await this.getUser(match.params.id);
-    this.setUser(user);
-    this.setLoadding(false);
+    const {match} = this.props;
+    const {params} = match;
+    const id = Number(params.id);
+    if (Number.isInteger(id)) {
+      this.setLoadding(true);
+      const {user} = await this.getUser(match.params.id);
+      this.setUser(user);
+      this.setLoadding(false);
+    }
   }
 
   render () {
     return (
       <Card>
         <Spin spinning={this.loadding}>
-          <UserForm user = {this.user} />
+          <UserForm user={this.user}/>
         </Spin>
       </Card>
     )

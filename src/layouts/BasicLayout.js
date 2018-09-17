@@ -69,19 +69,6 @@ export default class BasicLayout extends Component {
             {/*</Breadcrumb>*/}
 
             {this.props.children}
-            {/*<Switch>*/}
-              {/*<Route path='/dashboard' component={*/}
-                {/*Loadable({*/}
-                  {/*loader: () => import('../pages/DashBoard/DashBoard'),*/}
-                  {/*loading() {*/}
-                    {/*return <div>Loading...</div>*/}
-                  {/*},*/}
-                {/*})*/}
-              {/*}/>*/}
-              {/*<Route path='/users' component={UserContainer}/>*/}
-              {/*/!*<Redirect to={`/dashboard`}/>*!/*/}
-            {/*</Switch>*/}
-
           </Content>
           <Footer/>
         </Layout>

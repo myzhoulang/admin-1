@@ -1,21 +1,36 @@
 import React, {Component} from "react";
 import {observable, action, runInAction} from "mobx";
 import {observer} from "mobx-react";
-import {Table, Card, Form, Row, Col, Input, Select, Button, Icon, DatePicker, Alert, Spin} from 'antd';
+import {Table, Card, Form, Row, Col, Input, Select, Button, Icon, DatePicker, Alert, Spin, Modal} from 'antd';
+import {Link} from "react-router-dom";
 
 import user from "../../store/User";
 import "./index.less";
 //
 const FormItem = Form.Item;
 const Option = Select.Option;
+const confirm = Modal.confirm;
 
 @observer
 export default class List extends Component {
   @observable loading = false;
+  @observable confirmLoading = false;
 
   @action.bound
   load (status) {
     this.loading = status;
+  }
+
+  delete (user) {
+    confirm({
+      title: `确认删除${user.name}用户`,
+      content: `删除后，用户将不在保存， 请谨慎操作`,
+      onOk () {
+        return new Promise((resolve, reject) => {
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+        }).catch(() => console.log('Oops errors!'));
+      }
+    })
   }
 
   componentDidMount () {
@@ -52,6 +67,20 @@ export default class List extends Component {
       title: '创建时间',
       dataIndex: 'createTime',
       key: 'createTime'
+    }, {
+      title: '操作',
+      dataIndex: '',
+      key: 'x',
+      render: (user) => {
+        return (
+          <div>
+            <Button icon={"edit"} type={"primary"}>
+              <Link style={{color: '#fff'}} to={`/admin/users/${user.id}`}>编辑</Link>
+            </Button>
+            <Button style={{marginLeft: "15px"}} onClick={() => this.delete(user)} icon={"delete"} type={"danger"}>删除</Button>
+          </div>
+        );
+      }
     }];
 
     const rowSelection = {
@@ -59,7 +88,7 @@ export default class List extends Component {
         console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
       },
       getCheckboxProps: record => ({
-        disabled: record.name === 'Disabled User', // Column configuration not to be checked
+        disabled: record.name === 'Disabled User',
         name: record.name,
       }),
     };
@@ -126,7 +155,7 @@ export default class List extends Component {
         </Form>
 
         <div className="table-operations">
-          <Button type="primary"><Icon type="plus" theme="outlined"/>新建</Button>
+          <Button type="primary"><Link to={"/admin/users/"}><Icon type="plus" theme="outlined"/>新建</Link></Button>
           <Button type="primary" style={{marginLeft: "8px"}}><Icon type="file-excel" theme="outlined"/>导出</Button>
           {/*<Button onClick={this.clearAll}>Clear filters and sorters</Button>*/}
         </div>

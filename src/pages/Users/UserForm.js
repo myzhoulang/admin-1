@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Checkbox, Form, Input, Radio, Select, Button} from "antd";
-import {action, observable} from "mobx";
+import {withRouter} from "react-router-dom";
+import {observable, action, runInAction} from "mobx";
 import {observer} from "mobx-react";
 import PropTypes from 'prop-types'
 
@@ -10,15 +11,34 @@ const Option = Select.Option;
 
 @observer
 class UserForm extends Component {
+  @observable loading = false;
+
+  @action setLoading (status) {
+    this.loading = status;
+  }
+
   static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
     user: PropTypes.object
   }
 
-  handleSubmit = (e) => {
+  componentWillMount () {
+    console.log(this.props)
+  }
+
+  Submit = (e) => {
     e.preventDefault();
+
+    this.setLoading(true);
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log(values)
+        setTimeout(() => {
+          runInAction(() => {
+            this.setLoading(false)
+          })
+        }, 2000)
       }
     });
   }
@@ -38,7 +58,7 @@ class UserForm extends Component {
       {name: "体验角色", id: 4}
     ];
     const {getFieldDecorator} = this.props.form;
-    return (<Form onSubmit={this.handleSubmit} style={{margin: "8px 0"}}>
+    return (<Form onSubmit={this.Submit} style={{margin: "8px 0"}}>
       <FormItem
         {...formItemLayout}
         label="姓名"
@@ -132,7 +152,9 @@ class UserForm extends Component {
       <FormItem
         wrapperCol={{span: 12, offset: 6}}
       >
-        <Button type="primary" htmlType="submit">Submit</Button>
+        {this.loading}
+        <Button loading={this.loading} type="primary" htmlType="submit">Submit</Button>
+        <Button type="primary" style={{marginLeft: 15}} onClick={this.props.history.goBack}>Back</Button>
       </FormItem>
     </Form>)
   }
@@ -165,4 +187,4 @@ export default Form.create({
       })
     }
   }
-})(UserForm);
+})(withRouter(UserForm));

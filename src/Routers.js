@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {Layout, Spin} from "antd";
-import Loadable from 'react-loadable';
+import {Layout} from "antd";
+import {load} from './utils/utils';
 
 import Login from "./pages/Login";
 import BasicLayout from "./layouts/BasicLayout";
@@ -19,23 +19,14 @@ export default class Routers extends Component {
                 {/*<Route key={item.path} path={`${match.url}/${item.path}`} component={item.component}/>*/}
               {/*))}*/}
 
-              <Route path={`${match.url}/dashboard`} component={Loadable({
-                loader: () => import('./pages/DashBoard/DashBoard'),
-                loading: () => <Spin />
-              })}/>
+              <Route path={`${match.url}/dashboard`} component={load(() => import('./pages/DashBoard/DashBoard'))}/>
 
-              <Route path={`${match.url}/users`} render={({match}) => (
+              <Route path={`${match.url}/users`} strict={true} render={({match}) => (
                 <Container>
                   <Switch>
-                    <Route exact={true} path={match.url} component={Loadable({
-                      loader: () => import('./pages/Users'),
-                      loading: () => <Spin />
-                    })}/>
-
-                    <Route path={`${match.url}/:id`} component={Loadable({
-                      loader: () => import('./pages/Users/User'),
-                      loading: () => <Spin />
-                    })}/>
+                    <Route exact={true} strict={true} path={match.url} component={load(() => import('./pages/Users'))}/>
+                    <Route exact={true} path={`${match.url}/`} component={load(() => import('./pages/Users/User'))}/>
+                    <Route path={`${match.url}/:id`} component={load(() => import('./pages/Users/User'))}/>
                   </Switch>
                 </Container>
               )}/>
