@@ -1,11 +1,12 @@
 import React, {Component} from "react";
-import {observable, action, runInAction} from "mobx";
+import {observable, action, runInAction, computed} from "mobx";
 import {observer} from "mobx-react";
 import {Table, Card, Form, Row, Col, Input, Select, Button, Icon, DatePicker, Alert, Spin, Modal} from 'antd';
 import {Link} from "react-router-dom";
 
+import MainContent from "../../components/MainContent"
 import user from "../../store/User";
-import "./index.less";
+import styles from "./index.module.less";
 //
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -15,11 +16,22 @@ const confirm = Modal.confirm;
 export default class List extends Component {
   @observable loading = false;
   @observable confirmLoading = false;
+  @observable selectedUsers = [];
+
+  @computed get getSelectedCalls(){
+    return this.selectedUsers.reduce((pre, cur) => {console.log(pre); console.log(cur); return pre + cur.call}, 0)
+  }
+
+  @action.bound
+  selectUsers (users) {
+    this.selectedUsers = users
+  }
 
   @action.bound
   load (status) {
     this.loading = status;
   }
+
 
   delete (user) {
     confirm({
@@ -41,6 +53,11 @@ export default class List extends Component {
         this.load(false);
       })
     })
+  }
+
+  onSelectChange (selectUsers) {
+    debugger
+    this.selectUsers(selectUsers)
   }
 
   render () {
@@ -68,6 +85,11 @@ export default class List extends Component {
       dataIndex: 'createTime',
       key: 'createTime'
     }, {
+      title: '调用次数(次)',
+      dataIndex: 'call',
+      key: 'call',
+      sorter: (a, b) => a.call - b.call
+    },{
       title: '操作',
       dataIndex: '',
       key: 'x',
@@ -77,16 +99,15 @@ export default class List extends Component {
             <Button icon={"edit"} type={"primary"}>
               <Link style={{color: '#fff'}} to={`/admin/users/${user.id}`}>编辑</Link>
             </Button>
-            <Button style={{marginLeft: "15px"}} onClick={() => this.delete(user)} icon={"delete"} type={"danger"}>删除</Button>
+            <Button style={{marginLeft: "15px"}} onClick={() => this.delete(user)} icon={"delete"}
+                    type={"danger"}>删除</Button>
           </div>
         );
       }
     }];
 
     const rowSelection = {
-      onChange: (selectedRowKeys, selectedRows) => {
-        console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-      },
+      onChange: (selectedKeys, selectedUsers) => this.onSelectChange(selectedUsers),
       getCheckboxProps: record => ({
         disabled: record.name === 'Disabled User',
         name: record.name,
@@ -94,83 +115,85 @@ export default class List extends Component {
     };
 
     return (
-      <Card bordered={false}>
-        <Form>
-          <Row gutter={24}>
-            <Col span={8}>
-              <FormItem label="规则名称" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                <Input placeholder="请输入规则名称"/>
-              </FormItem>
-            </Col>
+      <MainContent title={'用户管理'} content={'用户管理描述'}>
+        <Card bordered={false}>
+          <Form>
+            <Row gutter={24}>
+              <Col span={8}>
+                <FormItem label="规则名称" labelCol={{span: 8}} wrapperCol={{span: 16}}>
+                  <Input placeholder="请输入规则名称"/>
+                </FormItem>
+              </Col>
 
-            <Col span={8}>
-              <FormItem label="规则名称" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                <Select
-                  showSearch
-                  style={{width: "100%"}}
-                  placeholder="Select a person"
-                >
-                  <Option value="jack">Jack</Option>
-                  <Option value="lucy">Lucy</Option>
-                  <Option value="tom">Tom</Option>
-                </Select>
-              </FormItem>
-            </Col>
+              <Col span={8}>
+                <FormItem label="规则名称" labelCol={{span: 8}} wrapperCol={{span: 16}}>
+                  <Select
+                    showSearch
+                    style={{width: "100%"}}
+                    placeholder="Select a person"
+                  >
+                    <Option value="jack">Jack</Option>
+                    <Option value="lucy">Lucy</Option>
+                    <Option value="tom">Tom</Option>
+                  </Select>
+                </FormItem>
+              </Col>
 
-            <Col span={8}>
-              <FormItem label="更新日期" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                <DatePicker style={{width: "100%"}}/>
-              </FormItem>
+              <Col span={8}>
+                <FormItem label="更新日期" labelCol={{span: 8}} wrapperCol={{span: 16}}>
+                  <DatePicker style={{width: "100%"}}/>
+                </FormItem>
 
-            </Col>
-          </Row>
+              </Col>
+            </Row>
 
-          <Row gutter={24}>
-            <Col span={8}>
-              <FormItem label="调用次数" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                <Input placeholder="请输入选择"/>
-              </FormItem>
+            <Row gutter={24}>
+              <Col span={8}>
+                <FormItem label="调用次数" labelCol={{span: 8}} wrapperCol={{span: 16}}>
+                  <Input placeholder="请输入选择"/>
+                </FormItem>
 
-            </Col>
+              </Col>
 
-            <Col span={8}>
-              <FormItem label="使用状态" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                <Input placeholder="请输入选择"/>
-              </FormItem>
-            </Col>
+              <Col span={8}>
+                <FormItem label="使用状态" labelCol={{span: 8}} wrapperCol={{span: 16}}>
+                  <Input placeholder="请输入选择"/>
+                </FormItem>
+              </Col>
 
-            <Col span={8}>
-              <FormItem label="使用状态" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                <Input placeholder="请输入选择"/>
-              </FormItem>
-            </Col>
-          </Row>
+              <Col span={8}>
+                <FormItem label="使用状态" labelCol={{span: 8}} wrapperCol={{span: 16}}>
+                  <Input placeholder="请输入选择"/>
+                </FormItem>
+              </Col>
+            </Row>
 
-          <Row gutter={24}>
-            <Col style={{textAlign: "right"}}>
-              <Button type="primary">查询</Button>
-              <Button style={{marginLeft: "8px"}}>重置</Button>
-            </Col>
-          </Row>
-        </Form>
+            <Row gutter={24}>
+              <Col style={{textAlign: "right"}}>
+                <Button type="primary">查询</Button>
+                <Button style={{marginLeft: "8px"}}>重置</Button>
+              </Col>
+            </Row>
+          </Form>
 
-        <div className="table-operations">
-          <Button type="primary"><Link to={"/admin/users/"}><Icon type="plus" theme="outlined"/>新建</Link></Button>
-          <Button type="primary" style={{marginLeft: "8px"}}><Icon type="file-excel" theme="outlined"/>导出</Button>
-          {/*<Button onClick={this.clearAll}>Clear filters and sorters</Button>*/}
-        </div>
+          <div className={styles.tableOperations}>
+            <Button type="primary"><Link to={"/admin/users/"}><Icon type="plus" theme="outlined"/>新建</Link></Button>
+            <Button type="primary" style={{marginLeft: "8px"}}><Icon type="file-excel" theme="outlined"/>导出</Button>
+            {/*<Button onClick={this.clearAll}>Clear filters and sorters</Button>*/}
+          </div>
 
-        <Alert
-          style={{marginBottom: "16px"}}
-          message="Success Tips"
-          description="Detailed description and advices about successful copywriting."
-          type="info"
-          showIcon
-        />
-        <Spin spinning={this.loading}>
-          <Table rowSelection={rowSelection} dataSource={user.users} rowKey="id" columns={columns}/>
-        </Spin>
-      </Card>
+          <Alert
+            style={{marginBottom: "16px"}}
+            message={`已选择 ${this.selectedUsers.length} 项, 共调用 ${this.getSelectedCalls} 次`}
+            description=""
+            type="info"
+            showIcon
+          />
+          <Spin spinning={this.loading}>
+            <Table rowSelection={rowSelection} dataSource={user.users} rowKey="id" columns={columns}/>
+          </Spin>
+        </Card>
+      </MainContent>
     )
   }
 }

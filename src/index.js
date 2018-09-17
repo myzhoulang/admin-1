@@ -5,7 +5,7 @@ import {LocaleProvider} from "antd";
 import registerServiceWorker from './registerServiceWorker';
 
 import Routers from "./Routers";
-import './index.css';
+import './index.less';
 
 ReactDOM.render((
   <LocaleProvider locale={zhCN}>

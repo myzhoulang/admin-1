@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Icon, Tabs, Popover, List, Avatar} from "antd";
 
-import './index.css';
+import './index.less';
 
 const TabPane = Tabs.TabPane;
 

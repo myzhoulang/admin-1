@@ -23,7 +23,7 @@ export default class HeaderView extends Component {
 
     return (
       <Header id="header">
-        <div className="global-header-index-header">
+        <div className="global-header-index-header" style={{boxShadow: '0 1px 4px rgba(0,21,41,.08)'}}>
           <Icon
             className="trigger"
             type={appStore.siderMenuCollapsed? 'menu-unfold' : 'menu-fold'}

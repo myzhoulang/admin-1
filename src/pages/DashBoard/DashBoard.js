@@ -3,7 +3,6 @@ import {Card, Row, Col, Tooltip} from "antd";
 import {observable, action} from "mobx";
 import {observer} from "mobx-react";
 
-
 import mocks from "../../mocks/point-bubble-mock.json";
 
 import NumberInfo from '../../components/NumberInfo';
@@ -12,7 +11,7 @@ import BubbleChart from "../../components/Charts/BubbleChart";
 import Donut from "../../components/Charts/Donut";
 import Line from "../../components/Charts/Line"
 
-import './DashBoard.css';
+import styles from './index.module.less';
 
 @observer
 export default class DashBoard extends Component {
@@ -47,7 +46,7 @@ export default class DashBoard extends Component {
                 </Col>
               </Row>
 
-              <div className='mapChart'>
+              <div className={styles.mapChart}>
                 <Tooltip title="等待后期实现">
                   {this.status === 'success' && <BubbleChart height={480} data={this.data}/>}
                 </Tooltip>
@@ -73,10 +72,6 @@ export default class DashBoard extends Component {
           </Col>
         </Row>
       </React.Fragment>
-
-
-
-
     )
   }
 }
