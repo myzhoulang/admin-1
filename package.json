@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://47.98.62.21:3008",
-  "homepage": "https://myzhoulang.github.io",
+  "homepage": ".",
   "dependencies": {
     "@antv/data-set": "^0.9.5",
     "antd": "^3.9.2",
