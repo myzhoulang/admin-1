@@ -5,7 +5,7 @@ class User {
 
   @action.bound
   getUsers () {
-    return fetch("http://47.98.62.21:3008/api/users", {
+    return fetch("https://47.98.62.21:3008/api/users", {
       method: "get",
       headers: {"Content-Type": "application/json"}
     })
@@ -22,7 +22,7 @@ class User {
 
   @action.bound
   getUser (id) {
-    return fetch(`http://47.98.62.21:3008/api/users/${id}`, {
+    return fetch(`https://47.98.62.21:3008/api/users/${id}`, {
       method: "get",
       headers: {"Content-Type": "application/json"}
     })
