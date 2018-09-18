@@ -76,7 +76,7 @@ class MainContent extends Component {
           </div>
         ) : null}
 
-        <div style={{margin: '24px 24px 0'}} className={'a1'}>
+        <div style={{margin: '12px 12px 0'}} className={'a1'}>
           {this.props.children}
         </div>
       </React.Fragment>

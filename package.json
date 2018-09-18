@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://127.0.0.1:3008",
+  "homepage": "https://myzhoulang.github.io",
   "dependencies": {
     "@antv/data-set": "^0.9.5",
     "antd": "^3.9.2",
     "babel-plugin-import": "^1.8.0",
     "bizcharts": "^3.2.2",
+    "gh-pages": "^2.0.0",
     "mobx": "^5.1.0",
     "mobx-react": "^5.2.6",
     "path-to-regexp": "^2.4.0",
@@ -24,6 +26,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "devDependencies": {}

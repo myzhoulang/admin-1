@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import {HashRouter, Route, Switch, Redirect} from "react-router-dom";
 import {Layout} from "antd";
 import {load} from './utils/utils';
 
@@ -10,7 +10,7 @@ import Container from "./components/Container"
 export default class Routers extends Component {
   render () {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <Layout>
           <Switch>
             <Route path={'/login'} component={Login}/>
@@ -39,7 +39,7 @@ export default class Routers extends Component {
             <Redirect from='/' to='/admin/dashboard'/>
           </Switch>
         </Layout>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

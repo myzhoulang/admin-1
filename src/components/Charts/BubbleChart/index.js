@@ -1,14 +1,20 @@
 import React from "react";
 import {observer} from "mobx-react";
 
-import {
-  G2,
-  Chart,
-  Geom,
-  Axis,
-  Legend,
-  Tooltip,
-} from "bizcharts";
+// import {
+//   G2,
+//   Chart,
+//   Geom,
+//   Axis,
+//   Legend,
+//   Tooltip,
+// } from "bizcharts";
+import {G2} from 'bizcharts/lib/core';
+import Chart from 'bizcharts/lib/components/Chart';
+import Axis from 'bizcharts/lib/components/Axis';
+import Tooltip from 'bizcharts/lib/components/Tooltip';
+import Legend from 'bizcharts/lib/components/Legend';
+import Geom from 'bizcharts/lib/components/Geom';
 
 @observer
 class BubbleChart extends React.Component {

@@ -5,7 +5,6 @@ import {ControllerIcon} from "../Icons";
 import {observable, action} from "mobx";
 import {observer} from "mobx-react";
 
-
 import PropTypes from 'prop-types'
 import appStore from "../../store/app";
 

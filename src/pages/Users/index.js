@@ -79,6 +79,7 @@ export default class List extends Component {
       title: '住址',
       dataIndex: 'address',
       key: 'address',
+      width: 200
     }, {
       title: '创建时间',
       dataIndex: 'createTime',
@@ -96,7 +97,7 @@ export default class List extends Component {
         return (
           <div>
             <Button icon={"edit"} type={"primary"}>
-              <Link style={{color: '#fff'}} to={`/admin/users/${user.id}`}>编辑</Link>
+              <Link  style={{color: '#fff'}} to={`/admin/users/${user.id}`}>编辑</Link>
             </Button>
             <Button style={{marginLeft: "15px"}} onClick={() => this.delete(user)} icon={"delete"}
                     type={"danger"}>删除</Button>
@@ -178,6 +179,7 @@ export default class List extends Component {
           <div className={styles.tableOperations}>
             <Button type="primary"><Link to={"/admin/users/"}><Icon type="plus" theme="outlined"/>新建</Link></Button>
             <Button type="primary" style={{marginLeft: "8px"}}><Icon type="file-excel" theme="outlined"/>导出</Button>
+            <Button type="primary" style={{marginLeft: "8px"}}><Icon type="printer" theme="outlined"/>打印</Button>
             {/*<Button onClick={this.clearAll}>Clear filters and sorters</Button>*/}
           </div>
 
@@ -189,7 +191,7 @@ export default class List extends Component {
             showIcon
           />
           <Spin spinning={this.loading}>
-            <Table rowSelection={rowSelection} dataSource={user.users} rowKey="id" columns={columns}/>
+            <Table size="middle" rowSelection={rowSelection} dataSource={user.users} rowKey="id" columns={columns}/>
           </Spin>
         </Card>
       </MainContent>

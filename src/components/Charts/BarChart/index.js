@@ -1,11 +1,17 @@
 import React from "react";
-import {
-  Chart,
-  Geom,
-  Axis,
-  Tooltip,
-  Legend,
-} from "bizcharts";
+// import {
+//   Chart,
+//   Geom,
+//   Axis,
+//   Tooltip,
+//   Legend,
+// } from "bizcharts";
+import Chart from 'bizcharts/lib/components/Chart';
+import Axis from 'bizcharts/lib/components/Axis';
+import Tooltip from 'bizcharts/lib/components/Tooltip';
+import Legend from 'bizcharts/lib/components/Legend';
+import Geom from 'bizcharts/lib/components/Geom';
+
 import DataSet from "@antv/data-set";
 
 class BarChart extends React.Component {

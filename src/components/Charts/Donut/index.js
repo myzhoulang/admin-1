@@ -1,14 +1,23 @@
 import React from "react";
-import {
-  Chart,
-  Geom,
-  Axis,
-  Tooltip,
-  Coord,
-  Label,
-  Legend,
-  Guide
-} from "bizcharts";
+// import {
+//   Chart,
+//   Geom,
+//   Axis,
+//   Tooltip,
+//   Coord,
+//   Label,
+//   Legend,
+//   Guide
+// } from "bizcharts";
+import Chart from 'bizcharts/lib/components/Chart';
+import Axis from 'bizcharts/lib/components/Axis';
+import Tooltip from 'bizcharts/lib/components/Tooltip';
+import Legend from 'bizcharts/lib/components/Legend';
+import Geom from 'bizcharts/lib/components/Geom';
+import Coord from 'bizcharts/lib/components/Coord';
+import Label from 'bizcharts/lib/components/Label';
+import Guide from 'bizcharts/lib/components/Guide';
+
 import DataSet from "@antv/data-set";
 
 class Donut extends React.Component {
@@ -61,7 +70,7 @@ class Donut extends React.Component {
           padding={'auto'}
           forceFit
         >
-          <Coord type={"theta"}  radius={0.7} innerRadius={0.8}/>
+          <Coord type={"theta"}  radius={0.65} innerRadius={0.8}/>
           <Axis name="percent"/>
           <Legend
             position="bottom-left"
@@ -73,7 +82,7 @@ class Donut extends React.Component {
           <Guide>
             <Html
               position={["50%", "50%"]}
-              html="<div style=&quot;color:#8c8c8c;font-size:1.16em;text-align: center;width: 10em;&quot;>主机<br><span style=&quot;color:#262626;font-size:2.5em&quot;>200</span>台</div>"
+              html="<div style=&quot;color:#8c8c8c;font-size:1.16em;text-align: center;width: 5em;&quot;>主机<br><span style=&quot;color:#262626;font-size:2em&quot;>200</span>台</div>"
               alignX="middle"
               alignY="middle"
             />

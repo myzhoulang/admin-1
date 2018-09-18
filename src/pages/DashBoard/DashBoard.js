@@ -29,7 +29,7 @@ export default class DashBoard extends Component {
   render () {
     return (
       <MainContent>
-        <Row gutter={24}>
+        <Row gutter={12}>
           <Col xl={16} lg={24} md={24} sm={24} xs={24} style={{marginBottom: 24}}>
             <Card title="活动实时交易情况" bordered={false}>
               <Row>

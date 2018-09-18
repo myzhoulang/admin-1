@@ -20,7 +20,7 @@ class SliderBar extends Component{
     return (
       <Sider
         width={256}
-        breakpoint="lg"
+        breakpoint="xl"
         trigger={null}
         collapsible
         onBreakpoint={this.breakPoint}

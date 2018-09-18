@@ -1,10 +1,15 @@
 import React from "react";
-import {
-  Chart,
-  Geom,
-  Axis,
-  Tooltip
-} from "bizcharts";
+// import {
+//   Chart,
+//   Geom,
+//   Axis,
+//   Tooltip
+// } from "bizcharts";
+
+import Chart from 'bizcharts/lib/components/Chart';
+import Axis from 'bizcharts/lib/components/Axis';
+import Tooltip from 'bizcharts/lib/components/Tooltip';
+import Geom from 'bizcharts/lib/components/Geom';
 
 class Basic extends React.Component {
   render() {
