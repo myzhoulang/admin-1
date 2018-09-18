@@ -7,6 +7,7 @@ import {observer} from "mobx-react";
 
 
 import PropTypes from 'prop-types'
+import appStore from "../../store/app";
 
 const SubMenu = Menu.SubMenu;
 
@@ -55,6 +56,7 @@ class BaseMenu extends Component{
         style={{ padding: "16px 0", width: "100%"}}
         theme="dark"
         mode="inline"
+        inlineCollapsed={appStore.siderMenuCollapsed}
         selectedKeys={this.currentPaths}
         defaultOpenKeys={this.getOpenKeys()}
         defaultSelectedKeys={[location.pathname]}>
