@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import {observable, action} from "mobx";
+import {observable, action, runInAction} from "mobx";
 import {observer} from "mobx-react";
-
 import {Tabs, Input, Icon, Button, Form, Row, Col, Checkbox} from "antd";
+
 import "./index.less";
 import pStyle from '../../index.module.less';
 
@@ -11,27 +11,24 @@ const TabPane = Tabs.TabPane;
 
 @observer
 class LoginForm extends Component {
+
+
+
   @observable activeTab = 'userName';
-  @observable second = 120;
+  @observable count = 0;
 
   @action.bound
-  setActiveTab (tab) {
+  setActiveTab(tab) {
     this.activeTab = tab
   }
 
   @action.bound
-  countDown () {
-    function fn () {
-      this.second--
-      debugger
-      if(this.second > 0){
-        setTimeout(fn, 1000)
-      }
-    }
-    fn.bind(this)()
+  setCount(count) {
+    this.count = count;
   }
 
   login = (e) => {
+    console.log(this)
     e.preventDefault();
     const file = {
       userName: ['email', 'password'],
@@ -40,18 +37,30 @@ class LoginForm extends Component {
     this.props.form.validateFields(file[this.activeTab], (err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.history.push('/')
+      } else {
+
       }
     });
   }
 
   getCaptch = () => {
-    this.props.form.validateFields(['phone'], () => {
-      this.countDown()
+    this.props.form.validateFields(['phone'], (err) => {
+      if (!err) {
+        this.setCount(120);
+        const fn = () => {
+          runInAction(() => this.count--);
+          if (this.count > 0) {
+            setTimeout(fn, 1000);
+          }
+        }
+        fn();
+      }
     })
   }
 
-  render () {
-    const {getFieldDecorator, validateFields} = this.props.form;
+  render() {
+    const {getFieldDecorator} = this.props.form;
     const IconStyle = {
       color: 'rgba(0,0,0,.25)'
     }
@@ -106,12 +115,13 @@ class LoginForm extends Component {
                           {getFieldDecorator('captcha', {
                             rules: [{required: true, message: '请输入验证码!'}],
                           })(
-                            <Input size="large" placeholder="Captch"/>
+                            <Input size="large" prefix={<Icon type="mail" theme="outlined" style={IconStyle} />} placeholder="Captch"/>
                           )}
                         </Col>
                         <Col span={8}>
                           {this.second}
-                          <Button onClick={this.getCaptch} className={pStyle.btnBlock} size="large">获取验证码</Button>
+                          <Button onClick={this.getCaptch} disabled={this.count} className={pStyle.btnBlock}
+                                  size="large">{this.count ? `${this.count} s` : '获取验证码'}</Button>
                         </Col>
                       </Row>
                     </FormItem>
@@ -131,7 +141,6 @@ class LoginForm extends Component {
                   <Button size='large' type="primary" htmlType="submit" className={pStyle.btnBlock}>
                     登陆
                   </Button>
-                  Or <a href="">register now!</a>
                 </FormItem>
               </Form>
             </div>

@@ -41,6 +41,7 @@ class MainContent extends Component {
             </Breadcrumb.Item>);
         }
       })
+      return _;
     });
 
     if (extraBreadcrumbItems.length > 0) {

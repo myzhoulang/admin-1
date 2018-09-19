@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {Avatar, Button, Icon, Layout, Dropdown, Menu, Tooltip} from "antd";
 import {observer} from "mobx-react";
+import {Link} from "react-router-dom";
+
 
 import Notices from './Notices'
 import userAvatar from "../../assets/images/user.png";
@@ -18,7 +20,7 @@ export default class HeaderView extends Component {
         <Menu.Item key="1"><Icon type="user"/>个人中心</Menu.Item>
         <Menu.Item key="2"><Icon type="setting"/>个人设置</Menu.Item>
         <Menu.Divider/>
-        <Menu.Item key="3"><Icon type="logout"/>退出登录</Menu.Item>
+        <Menu.Item key="3"><Link to={'/login'}><Icon type="logout"/>退出登录</Link></Menu.Item>
       </Menu>
     )
 

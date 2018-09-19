@@ -48,7 +48,7 @@ class BaseMenu extends Component{
   }
 
   render(){
-    const {match, location} = this.props;
+    const {location} = this.props;
     return (
       <Menu
         onClick={(item) => this.setCurrentPaths([item.key])}

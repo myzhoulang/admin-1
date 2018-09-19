@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Card, Spin} from "antd";
-import {observable, action, runInAction} from "mobx";
+import {observable, action} from "mobx";
 import {observer} from "mobx-react";
 
 import MainContent from "../../components/MainContent";
