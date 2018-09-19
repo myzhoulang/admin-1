@@ -5,6 +5,7 @@ import {observer} from "mobx-react";
 import Notices from './Notices'
 import userAvatar from "../../assets/images/user.png";
 import appStore from "../../store/app"
+import HeaderStyle from './index.module.less';
 
 const {Header} = Layout;
 
@@ -22,18 +23,18 @@ export default class HeaderView extends Component {
     )
 
     return (
-      <Header id="header">
-        <div className="global-header-index-header" style={{boxShadow: '0 1px 4px rgba(0,21,41,.08)'}}>
+      <Header className={HeaderStyle.header}>
+        <div className={HeaderStyle.globalHeaderIndexHeader} style={{boxShadow: '0 1px 4px rgba(0,21,41,.08)'}}>
           <Icon
-            className="trigger"
+            className={HeaderStyle.trigger}
             type={appStore.siderMenuCollapsed? 'menu-unfold' : 'menu-fold'}
             onClick={appStore.toggleSiderMenuCollapsed}
           />
 
-          <div className="global-header-index-right">
+          <div className={HeaderStyle.globalHeaderIndexRight}>
             <Tooltip placement="top" title={'使用文档'}>
-              <a href="/" className="global-header-index-action">
-                <Icon type="question-circle"></Icon>
+              <a href="/" className={HeaderStyle.globalHeaderIndexAction}>
+                <Icon type="question-circle" />
               </a>
             </Tooltip>
 
@@ -42,12 +43,12 @@ export default class HeaderView extends Component {
             <Dropdown
               overlay={accountContent}
             >
-            <span className="global-header-index-action">
-                  <Avatar size="small" className="global-header-index-avatar" src={userAvatar} alt=""/>
-                  <span>Serati Ma</span>
+            <span className={HeaderStyle.globalHeaderIndexAction}>
+                  <Avatar size="small" className={HeaderStyle.globalHeaderIndexAvatar} src={userAvatar} alt=""/>
+                  <span>zhoulang</span>
                 </span>
             </Dropdown>
-            <Button size="small" style={{margin: '0 8px'}}>English</Button>
+            <Button htmlType={'button'} size="small" style={{margin: '0 8px'}}>English</Button>
           </div>
         </div>
       </Header>

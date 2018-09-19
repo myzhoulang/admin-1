@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Icon, Tabs, Popover, List, Avatar} from "antd";
 
-import './index.less';
+import HeaderStyles from './index.module.less';
 
 const TabPane = Tabs.TabPane;
 
@@ -33,7 +33,7 @@ export default class Notice extends Component {
 
 		const tab1 = (
 			<List
-				footer={<div className={'components-notice-index-notice-list-clear'}>清空通知</div>}
+				footer={<div className={HeaderStyles.componentsNoticeIndexNoticeListClear}>清空通知</div>}
 				itemLayout="horizontal"
 				dataSource={data}
 				renderItem={item => (
@@ -48,7 +48,7 @@ export default class Notice extends Component {
 			/>
 		);
 		const noticeContent = (
-			<div className={'components-notice-index-popover'}>
+			<div style={{width: 340}}>
 				<Tabs defaultActiveKey="1">
 					<TabPane tab="通知(2)" key="1">{tab1}</TabPane>
 					<TabPane tab="消息(3)" key="2">{tab1}</TabPane>
@@ -57,9 +57,9 @@ export default class Notice extends Component {
 			</div>
 		);
 		return (
-			<Popover placement="topLeft" popupClassName={'notice-index-popover-inner-content'} content={noticeContent}
+			<Popover placement="topLeft" popupClassName={HeaderStyles.noticeIndexPopoverInnerContent} content={noticeContent}
 			         trigger="click">
-				<a href="/" className="global-header-index-action">
+				<a href="/" className={HeaderStyles.globalHeaderIndexAction}>
 					<Icon type="bell"></Icon>
 				</a>
 			</Popover>

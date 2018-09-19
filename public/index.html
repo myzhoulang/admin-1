@@ -20,13 +20,74 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App kljjl</title>
+
+    <style>
+      #root{ min-height: 100vh;}
+      #loadding {
+        margin-right: auto;
+        margin-left: auto;
+        position: relative;
+        top: calc((100vh - 30px) / 2);
+        width: 30px;
+        height: 30px;
+        background: #3498db;
+        border-radius: 50px;
+        animation: loadding 1.5s infinite linear;
+      }
+
+      #loadding:after {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+
+        border-top: 10px solid #9b59b6;
+        border-bottom: 10px solid #9b59b6;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+
+        border-radius: 50px;
+        content: '';
+        top: -20px;
+        left: -20px;
+        animation: loadding_after 1.5s infinite linear;
+      }
+
+      @keyframes loadding {
+        0% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(180deg);
+          background: #2ecc71;
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes loadding_after {
+        0% {
+          border-top: 10px solid #9b59b6;
+          border-bottom: 10px solid #9b59b6;
+        }
+        50% {
+          border-top: 10px solid #3498db;
+          border-bottom: 10px solid #3498db;
+        }
+        100% {
+          border-top: 10px solid #9b59b6;
+          border-bottom: 10px solid #9b59b6;
+        }
+      }
+
+    </style>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root">
-      loadding....
+      <div id="loadding"></div>
     </div>
     <!--
       This HTML file is a template.

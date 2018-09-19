@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import BaseMenu from './BaseMenu';
 import logo from "../../assets/svg/logo.svg";
 import appStore from "../../store/app";
+import styles from "./index.module.less";
 
 const {Sider} = Layout;
 
@@ -26,7 +27,7 @@ class SliderBar extends Component{
         onBreakpoint={this.breakPoint}
         collapsed={appStore.siderMenuCollapsed}
       >
-        <div className="sider-menu-index-logo" key="logo" id="logo">
+        <div className={styles.siderMenuIndexLogo} key="logo" id="logo">
           <Link to='/'>
             <img src={logo} alt="logo" />
             <h1>孚临风控商户中心</h1>
