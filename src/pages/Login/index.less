@@ -1,0 +1,82 @@
+@import '~antd/lib/style/themes/default.less';
+
+.login {
+  height: 100%;
+  .img-holder {
+    padding: 60px;
+    height: 100%;
+    background-color: #064E89;
+  }
+
+  .info-holder {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: left;
+    color: #fff;
+  }
+
+  .title {
+    margin-bottom: 30px;
+    font-weight: 900;
+    font-size: 25px;
+    max-width: 378px;
+    padding-right: 30px;
+    color: #fff;
+  }
+
+  .desc {
+    margin-bottom: 50px;
+    font-size: 19px;
+    font-weight: 300;
+    max-width: 378px;
+    line-height: 28px;
+  }
+
+  .form-holder {
+    background-color: #fff;
+    height: 100%;
+  }
+
+  .form-content {
+    padding: 60px;
+    min-height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .img-holder {
+      display: none;
+    }
+
+    .form-content {
+      padding: 0;
+    }
+  }
+
+  .form-items {
+    text-align: left;
+    max-width: 400px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    .ant-tabs-bar {
+      border-bottom: none;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .ant-tabs-tab {
+      font-size: 16px;
+    }
+
+    .ant-tabs-ink-bar {
+    }
+  }
+}
+

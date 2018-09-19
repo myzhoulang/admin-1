@@ -152,7 +152,6 @@ class UserForm extends Component {
       <FormItem
         wrapperCol={{span: 12, offset: 6}}
       >
-        {this.loading}
         <Button loading={this.loading} type="primary" htmlType="submit">Submit</Button>
         <Button type="primary" style={{marginLeft: 15}} onClick={this.props.history.goBack}>Back</Button>
       </FormItem>

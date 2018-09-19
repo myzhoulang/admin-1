@@ -11,7 +11,7 @@ export default class Routers extends Component {
   render () {
     return (
       <HashRouter>
-        <Layout>
+        <Layout style={{height: "100%"}}>
           <Switch>
             <Route path={'/login'} component={Login}/>
             <Route path={'/admin'} render={({match}) => (

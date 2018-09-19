@@ -23,6 +23,11 @@ export default class User extends Component {
     this.loadding = status;
   }
 
+  /**
+   * 获取用户详情
+   * @param id
+   * @returns {Promise}
+   */
   getUser (id) {
     return UserBx.getUser(id);
   }

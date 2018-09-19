@@ -9,6 +9,7 @@
     "antd": "^3.9.2",
     "babel-plugin-import": "^1.8.0",
     "bizcharts": "^3.2.2",
+    "classnames": "^2.2.6",
     "gh-pages": "^2.0.0",
     "mobx": "^5.1.0",
     "mobx-react": "^5.2.6",
