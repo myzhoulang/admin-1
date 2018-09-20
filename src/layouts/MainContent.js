@@ -1,9 +1,12 @@
 import React, {Component} from "react";
-import {Breadcrumb} from "antd";
+import {Breadcrumb, Tabs} from "antd";
 import pathToRegexp from "path-to-regexp";
 import {Link, withRouter} from "react-router-dom";
 import PropTypes from 'prop-types';
 import styles from "./style.module.less";
+import "./style.less";
+
+const TabPane = Tabs.TabPane;
 
 class MainContent extends Component {
   static propTypes = {
@@ -13,10 +16,27 @@ class MainContent extends Component {
     user: PropTypes.object
   }
 
+  changeTab = (key) => {
+    this.props.onChangeTab(key)
+  }
+
   render () {
-    const {title, content, extraContent, location} = this.props;
+    const {
+      title,
+      content,
+      extraContent,
+      location,
+      logo,
+      action,
+      tabList,
+      className,
+      tabActiveKey,
+      tabDefaultActiveKey,
+      tabBarExtraContent,
+    } = this.props;
     const pathName = location.pathname;
     const breadcrumbNameMap = {
+      '/admin/orders': '订单管理',
       '/admin/users': '用户管理',
       '/admin/users/': '用户添加',
       '/admin/users/:id': '用户详情'
@@ -55,25 +75,40 @@ class MainContent extends Component {
     return (
       <React.Fragment>
         {breadcrumbItems.length > 0 ? (
-          <div className={'page-header-index-detail'} style={{display: "flex"}}>
-            <div style={{
-              flex: 1,
-              backgroundColor: '#fff',
-              borderBottom: '1px solid #e8e8e8',
-              padding: '16px 32px 0'
-            }}>
-              <Breadcrumb style={{marginBottom: 15}}>
-                {breadcrumbItems}
-              </Breadcrumb>
+          <div style={{
+            flex: 1,
+            backgroundColor: '#fff',
+            borderBottom: '1px solid #e8e8e8',
+            padding: '16px 32px 0'
+          }}>
+            <Breadcrumb style={{marginBottom: 15}}>
+              {breadcrumbItems}
+            </Breadcrumb>
 
-              <div className={'page-header-index-row'}>
-                {title && <h2 className={styles.title}>{title}</h2>}
-              </div>
-              <div className={'page-header-index-row'}>
-                {content && <div className={styles.content}>{content}</div>}
-                {extraContent && <div className={styles.extraContent}>{extraContent}</div>}
+            <div className={'page-header-index-detail'} style={{display: 'flex'}}>
+              {logo ? <div className={'page-header-index-logo'}>{logo}</div> : null}
+              <div className={'page-header-index-main'} style={{flex: 1}}>
+                <div className={'page-header-index-row'}>
+                  {title && <h1 className={styles.title}>{title}</h1>}
+                  {action && <div className={styles.action}>{action}</div>}
+                </div>
+                <div className={'page-header-index-row'}>
+                  {content && <div className={styles.content}>{content}</div>}
+                  {extraContent && <div className={styles.extraContent}>{extraContent}</div>}
+                </div>
               </div>
             </div>
+
+            {tabList && tabList.length ? (<Tabs
+              onChange={this.changeTab}
+              className={'page-header-tabs'}
+              defaultActiveKey={tabActiveKey || tabList[0].key}
+              tabBarExtraContent={tabBarExtraContent}
+            >
+              {tabList.map(item => (
+                <TabPane tab={item.tab} key={item.key} />
+              ))}
+            </Tabs>): null}
           </div>
         ) : null}
 

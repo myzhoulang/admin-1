@@ -5,7 +5,7 @@ import {observer} from "mobx-react";
 
 import mocks from "../../mocks/point-bubble-mock.json";
 
-import MainContent from "../../components/MainContent";
+import MainContent from "../../layouts/MainContent";
 import NumberInfo from '../../components/NumberInfo';
 import BarChart from "../../components/Charts/BarChart";
 import BubbleChart from "../../components/Charts/BubbleChart";

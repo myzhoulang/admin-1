@@ -23,6 +23,21 @@ export default class Routers extends Component {
 
                 <Route path={`${match.url}/dashboard`} component={load(() => import('./pages/DashBoard/DashBoard'))}/>
 
+                <Route path={`${match.url}/orders`} strict={true} render={({match}) => (
+                  <Container>
+                    <Switch>
+                      <Route exact={true} strict={true} path={match.url}
+                             component={load(() => import('./pages/Orders'))} />
+
+                      <Route exact={true} strict={true} path={`${match.url}/`}
+                             component={load(() => import('./pages/Orders/Order'))} />
+
+                      <Route exact={true} strict={true} path={`${match.url}/:id`}
+                             component={load(() => import('./pages/Orders/Order'))} />
+                    </Switch>
+                  </Container>
+                )}/>
+
                 <Route path={`${match.url}/users`} strict={true} render={({match}) => (
                   <Container>
                     <Switch>

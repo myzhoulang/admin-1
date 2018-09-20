@@ -3,7 +3,7 @@ import {Card, Spin} from "antd";
 import {observable, action} from "mobx";
 import {observer} from "mobx-react";
 
-import MainContent from "../../components/MainContent";
+import MainContent from "../../layouts/MainContent";
 import UserForm from "./UserForm";
 import UserBx from "../../store/User";
 

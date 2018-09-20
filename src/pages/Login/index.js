@@ -67,7 +67,7 @@ class LoginForm extends Component {
     return (
       <Row className='login'>
 
-        <Col lg={10} className='img-holder'>
+        <Col md={10} lg={8} className='img-holder'>
           <div className='info-holder'>
             <h3 className='title'>孚临风控中心商户端</h3>
             <p className='desc'>努力让孚临风控中心成为全世界最牛B的风控平台。。</p>
@@ -75,7 +75,7 @@ class LoginForm extends Component {
           </div>
         </Col>
 
-        <Col lg={14} className='form-holder'>
+        <Col md={14} lg={16} className='form-holder'>
           <div className='form-content'>
             <div className='form-items'>
               <Form style={{width: '95%'}} onSubmit={this.login}>

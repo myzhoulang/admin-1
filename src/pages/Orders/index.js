@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 
 import MainContent from "../../layouts/MainContent"
 import user from "../../store/User";
-import styles from "./index.module.less";
 //
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -97,7 +96,7 @@ export default class List extends Component {
         return (
           <div>
             <Button icon={"edit"} type={"primary"}>
-              <Link  style={{color: '#fff'}} to={`/admin/users/${user.id}`}>编辑</Link>
+              <Link  style={{color: '#fff'}} to={`/admin/orders/${user.id}`}>编辑</Link>
             </Button>
             <Button style={{marginLeft: "15px"}} onClick={() => this.delete(user)} icon={"delete"}
                     type={"danger"}>删除</Button>
@@ -176,7 +175,7 @@ export default class List extends Component {
             </Row>
           </Form>
 
-          <div className={styles.tableOperations}>
+          <div>
             <Button type="primary"><Link to={"/admin/users/"}><Icon type="plus" theme="outlined"/>新建</Link></Button>
             <Button type="primary" style={{marginLeft: "8px"}}><Icon type="file-excel" theme="outlined"/>导出</Button>
             <Button type="primary" style={{marginLeft: "8px"}}><Icon type="printer" theme="outlined"/>打印</Button>

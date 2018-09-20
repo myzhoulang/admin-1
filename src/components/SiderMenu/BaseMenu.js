@@ -5,7 +5,7 @@ import {ControllerIcon} from "../Icons";
 import {observable, action} from "mobx";
 import {observer} from "mobx-react";
 
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import appStore from "../../store/app";
 
 const SubMenu = Menu.SubMenu;
@@ -31,12 +31,10 @@ class BaseMenu extends Component{
 
   getOpenKeys () {
     const {location} = this.props;
-
     const selectKey = location.pathname;
-
     const keys = {
       sub1: ['/admin/dashboard'],
-      sub3: ['/admin/users']
+      sub3: ['/admin/users', '/admin/orders']
     }
 
     for(let item of Object.keys(keys)) {
@@ -90,7 +88,7 @@ class BaseMenu extends Component{
 
         <SubMenu key="sub4" title={<span><Icon type="deployment-unit" /><span>模型管理</span></span>}>
           <Menu.Item key="4">
-            <span className="nav-text">订单记录</span>
+            <NavLink to="/admin/orders" className="nav-text">订单记录</NavLink>
           </Menu.Item>
 
           <Menu.Item key="7">
@@ -104,7 +102,7 @@ class BaseMenu extends Component{
           </Menu.Item>
         </SubMenu>
 
-        <SubMenu key="sub6" title={<span><ControllerIcon style={{ color: 'hotpink' }} /><span> 控制中心</span></span>}>
+        <SubMenu key="sub6" title={<span><ControllerIcon /><span> 控制中心</span></span>}>
           <Menu.Item key="6">
             <span className="nav-text">进件管理</span>
           </Menu.Item>

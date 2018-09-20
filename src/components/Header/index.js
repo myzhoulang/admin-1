@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {Avatar, Button, Icon, Layout, Dropdown, Menu, Tooltip} from "antd";
 import {observer} from "mobx-react";
-import {Link} from "react-router-dom";
-
+import {withRouter} from "react-router-dom";
+import PropTypes from 'prop-types'
 
 import Notices from './Notices'
 import userAvatar from "../../assets/images/user.png";
@@ -12,7 +12,18 @@ import HeaderStyle from './index.module.less';
 const {Header} = Layout;
 
 @observer
-export default class HeaderView extends Component {
+class HeaderView extends Component {
+
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  }
+
+  logout = () => {
+    this.props.history.push('/login');
+  }
+
   render () {
     // 用户更多操作
     const accountContent = (
@@ -20,7 +31,7 @@ export default class HeaderView extends Component {
         <Menu.Item key="1"><Icon type="user"/>个人中心</Menu.Item>
         <Menu.Item key="2"><Icon type="setting"/>个人设置</Menu.Item>
         <Menu.Divider/>
-        <Menu.Item key="3"><Link to={'/login'}><Icon type="logout"/>退出登录</Link></Menu.Item>
+        <Menu.Item key="3" onClick={this.logout}><Icon type="logout"/>退出登录</Menu.Item>
       </Menu>
     )
 
@@ -57,3 +68,5 @@ export default class HeaderView extends Component {
     )
   }
 }
+
+export default withRouter(HeaderView)

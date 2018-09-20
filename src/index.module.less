@@ -2,3 +2,31 @@
   display: block;
   width: 100%;
 }
+
+.componentsDescList {
+  margin-bottom: 24px;
+
+  .term {
+    color: rgba(0,0,0,.85);
+    display: table-cell;
+    line-height: 20px;
+    white-space: nowrap;
+    padding-bottom: 16px;
+    margin-right: 8px;
+
+    &::after{
+      content: ":";
+      margin: 0 8px 0 2px;
+      position: relative;
+      top: -.5px;
+    }
+  }
+
+  .detail {
+    color: rgba(0,0,0,.65);
+    display: table-cell;
+    padding-bottom: 16px;
+    display: table-cell;
+    line-height: 20px;
+  }
+}
