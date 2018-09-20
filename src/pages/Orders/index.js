@@ -17,26 +17,25 @@ export default class List extends Component {
   @observable confirmLoading = false;
   @observable selectedUsers = [];
 
-  @computed get getSelectedCalls(){
-    return this.selectedUsers.reduce((pre, cur) => {console.log(pre); console.log(cur); return pre + cur.call}, 0)
+  @computed get getSelectedCalls() {
+    return this.selectedUsers.reduce((pre, cur) => pre + cur.call, 0)
   }
 
   @action.bound
-  selectUsers (users) {
+  selectUsers(users) {
     this.selectedUsers = users
   }
 
   @action.bound
-  load (status) {
+  load(status) {
     this.loading = status;
   }
 
-
-  delete (user) {
+  delete(user) {
     confirm({
       title: `确认删除${user.name}用户`,
       content: `删除后，用户将不在保存， 请谨慎操作`,
-      onOk () {
+      onOk() {
         return new Promise((resolve, reject) => {
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
         }).catch(() => console.log('Oops errors!'));
@@ -44,7 +43,7 @@ export default class List extends Component {
     })
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.load(true);
     user.getUsers().then((data) => {
       runInAction(() => {
@@ -54,11 +53,11 @@ export default class List extends Component {
     })
   }
 
-  onSelectChange (selectUsers) {
+  onSelectChange(selectUsers) {
     this.selectUsers(selectUsers)
   }
 
-  render () {
+  render() {
     const columns = [{
       title: '姓名',
       dataIndex: 'name',
@@ -88,7 +87,7 @@ export default class List extends Component {
       dataIndex: 'call',
       key: 'call',
       sorter: (a, b) => a.call - b.call
-    },{
+    }, {
       title: '操作',
       dataIndex: '',
       key: 'x',
@@ -96,7 +95,7 @@ export default class List extends Component {
         return (
           <div>
             <Button icon={"edit"} type={"primary"}>
-              <Link  style={{color: '#fff'}} to={`/admin/orders/${user.id}`}>编辑</Link>
+              <Link style={{color: '#fff'}} to={`/admin/orders/${user.id}`}>编辑</Link>
             </Button>
             <Button style={{marginLeft: "15px"}} onClick={() => this.delete(user)} icon={"delete"}
                     type={"danger"}>删除</Button>
@@ -114,7 +113,7 @@ export default class List extends Component {
     };
 
     return (
-      <MainContent title={'用户管理'} content={'用户管理描述'}>
+      <MainContent title={"订单管理"} content={"商户的订单都在处理"}>
         <Card bordered={false}>
           <Form>
             <Row gutter={24}>
@@ -175,11 +174,9 @@ export default class List extends Component {
             </Row>
           </Form>
 
-          <div>
-            <Button type="primary"><Link to={"/admin/users/"}><Icon type="plus" theme="outlined"/>新建</Link></Button>
+          <div className={'table-operations'}>
             <Button type="primary" style={{marginLeft: "8px"}}><Icon type="file-excel" theme="outlined"/>导出</Button>
             <Button type="primary" style={{marginLeft: "8px"}}><Icon type="printer" theme="outlined"/>打印</Button>
-            {/*<Button onClick={this.clearAll}>Clear filters and sorters</Button>*/}
           </div>
 
           <Alert
