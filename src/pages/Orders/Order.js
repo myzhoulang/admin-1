@@ -7,7 +7,9 @@ import {observer} from "mobx-react";
 import BaseInfo from "./BaseInfo";
 import AddressBooks from "./AddressBooks";
 import pStyle from '../../index.module.less';
+import "./order.less";
 import MainContent from "../../layouts/MainContent";
+
 
 const ButtonGroup = Button.Group;
 const TabPane = Tabs.TabPane;
@@ -67,7 +69,7 @@ export default class Orders extends Component {
 
         <Col sm={12} md={8} xs={24}>
           <div className={pStyle.term}>订单状态</div>
-          <div className={pStyle.detail}><Badge status="processing"/>审核中</div>
+          <div className={pStyle.detail}><Badge status="success"/>已通过</div>
         </Col>
 
         <Col sm={12} md={8} xs={24}>
@@ -89,6 +91,16 @@ export default class Orders extends Component {
       </Row>
     </React.Fragment>;
     const tabBarExtraContent = null;
+    const baseInfo = <Card title="Card title" bordered={false}>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </Card>;
+    const MailList = <Card title="Card title" bordered={false}>
+      <p>2</p>
+      <p>2</p>
+      <p>3</p>
+    </Card>;
 
     const ThirdPartyData = <Card title="Card title" bordered={false}>
       <p>3</p>

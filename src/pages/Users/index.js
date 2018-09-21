@@ -6,8 +6,7 @@ import {Link} from "react-router-dom";
 
 import MainContent from "../../layouts/MainContent"
 import user from "../../store/User";
-import styles from "./index.module.less";
-//
+
 const FormItem = Form.Item;
 const Option = Select.Option;
 const confirm = Modal.confirm;
@@ -176,8 +175,8 @@ export default class List extends Component {
             </Row>
           </Form>
 
-          <div className={styles.tableOperations}>
-            <Button type="primary"><Link to={"/admin/users/"}><Icon type="plus" theme="outlined"/>新建</Link></Button>
+          <div className={'table-operations'}>
+            <Button type="primary" onClick={() => this.props.history.push("/admin/users/")}><Icon type="plus" theme="outlined"/>新建</Button>
             <Button type="primary" style={{marginLeft: "8px"}}><Icon type="file-excel" theme="outlined"/>导出</Button>
             <Button type="primary" style={{marginLeft: "8px"}}><Icon type="printer" theme="outlined"/>打印</Button>
             {/*<Button onClick={this.clearAll}>Clear filters and sorters</Button>*/}

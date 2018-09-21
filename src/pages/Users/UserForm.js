@@ -173,13 +173,13 @@ export default Form.create({
         value: user.phone
       }),
       sex: Form.createFormField({
-        value: user.sex
+        value: user.sex || 1
       }),
       no: Form.createFormField({
         value: user.no
       }),
       department: Form.createFormField({
-        value: user.department
+        value: user.department || 0
       }),
       roles:Form.createFormField({
         value: user.roles
