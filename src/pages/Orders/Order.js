@@ -4,6 +4,8 @@ import {observable, action} from "mobx";
 import {observer} from "mobx-react";
 
 
+import BaseInfo from "./BaseInfo";
+import AddressBooks from "./AddressBooks";
 import pStyle from '../../index.module.less';
 import MainContent from "../../layouts/MainContent";
 
@@ -65,7 +67,7 @@ export default class Orders extends Component {
 
         <Col sm={12} md={8} xs={24}>
           <div className={pStyle.term}>订单状态</div>
-          <div className={pStyle.detail}><Badge status="success"/>已通过</div>
+          <div className={pStyle.detail}><Badge status="processing"/>审核中</div>
         </Col>
 
         <Col sm={12} md={8} xs={24}>
@@ -87,16 +89,6 @@ export default class Orders extends Component {
       </Row>
     </React.Fragment>;
     const tabBarExtraContent = null;
-    const baseInfo = <Card title="Card title" bordered={false}>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-    </Card>;
-    const MailList = <Card title="Card title" bordered={false}>
-      <p>2</p>
-      <p>2</p>
-      <p>3</p>
-    </Card>;
 
     const ThirdPartyData = <Card title="Card title" bordered={false}>
       <p>3</p>
@@ -111,8 +103,8 @@ export default class Orders extends Component {
     </Card>;
 
     const tabList = [
-      {tab: '基本信息', key: 'BaseInfo', component: baseInfo},
-      {tab: '通讯录', key: 'MailList', component: MailList},
+      {tab: '基本信息', key: 'BaseInfo', component: <BaseInfo />},
+      {tab: '通讯录', key: 'MailList', component: <AddressBooks />},
       {tab: '第三方数据', key: 'ThirdPartyData', component: ThirdPartyData},
       {tab: '历史进件', key: 'HistrotyEntry', component: HistrotyEntry},
     ];
