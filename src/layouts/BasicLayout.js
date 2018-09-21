@@ -20,7 +20,7 @@ class BasicLayout extends Component {
     return (
       <Layout>
         <SiderMenu collapsed={this.collapsed}/>
-        <Layout style={{minHeight: "100vh"}}>
+        <Layout>
           <Header/>
           <Content style={{margin: '24px 24px 0'}}>
             <div  style={{margin: '-24px -24px 0'}}>

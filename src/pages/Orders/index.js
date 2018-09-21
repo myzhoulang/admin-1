@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 import {observable, action, runInAction, computed} from "mobx";
 import {observer} from "mobx-react";
-import {Table, Card, Form, Row, Col, Input, Select, Button, Icon, DatePicker, Alert, Spin, Modal} from 'antd';
+import {Table, Card, Form, Row, Col, Input, Select, Button, Icon, Divider, Alert, Spin, Modal} from 'antd';
 import {Link} from "react-router-dom";
 
 import MainContent from "../../layouts/MainContent"
 import user from "../../store/User";
 //
 const FormItem = Form.Item;
+const InputGroup = Input.Group;
 const Option = Select.Option;
 const confirm = Modal.confirm;
 
@@ -94,11 +95,13 @@ export default class List extends Component {
       render: (user) => {
         return (
           <div>
-            <Button icon={"edit"} type={"primary"}>
-              <Link style={{color: '#fff'}} to={`/admin/orders/${user.id}`}>编辑</Link>
-            </Button>
-            <Button style={{marginLeft: "15px"}} onClick={() => this.delete(user)} icon={"delete"}
-                    type={"danger"}>删除</Button>
+            {/*<Button icon={"edit"} type={"primary"}>*/}
+            <Link to={`/admin/orders/${user.id}`}>编辑</Link>
+            {/*</Button>*/}
+            {/*<Button style={{marginLeft: "15px"}} onClick={() => this.delete(user)} icon={"delete"}*/}
+                    {/*type={"danger"}>删除</Button>*/}
+            <Divider type="vertical" />
+            <a href={"/"}>删除</a>
           </div>
         );
       }
@@ -116,60 +119,38 @@ export default class List extends Component {
       <MainContent title={"订单管理"} content={"商户的订单都在处理"}>
         <Card bordered={false}>
           <Form>
-            <Row gutter={24}>
-              <Col span={8}>
-                <FormItem label="规则名称" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                  <Input placeholder="请输入规则名称"/>
-                </FormItem>
-              </Col>
-
-              <Col span={8}>
-                <FormItem label="规则名称" labelCol={{span: 8}} wrapperCol={{span: 16}}>
+            <Row gutter={18}>
+              <Col xs={24} sm={7} md={8} xxl={6}>
+                <FormItem label="模型名称" labelCol={{span: 7}} wrapperCol={{span: 16}}>
                   <Select
                     showSearch
                     style={{width: "100%"}}
-                    placeholder="Select a person"
-                  >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="tom">Tom</Option>
+                    placeholder="请选择模型名称">
+                    <Option value="jack">不限</Option>
+                    <Option value="lucy">灵芝分</Option>
+                    <Option value="tom">模型1</Option>
                   </Select>
                 </FormItem>
               </Col>
 
-              <Col span={8}>
-                <FormItem label="更新日期" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                  <DatePicker style={{width: "100%"}}/>
-                </FormItem>
-
-              </Col>
-            </Row>
-
-            <Row gutter={24}>
-              <Col span={8}>
-                <FormItem label="调用次数" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                  <Input placeholder="请输入选择"/>
-                </FormItem>
-
-              </Col>
-
-              <Col span={8}>
-                <FormItem label="使用状态" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                  <Input placeholder="请输入选择"/>
+              <Col xs={24} sm={11} md={10} xxl={6}>
+                <FormItem label="规则名称" labelCol={{span: 6}} wrapperCol={{span: 18}}>
+                  <InputGroup compact>
+                    <Select defaultValue="name" style={{width: 90}}>
+                      <Option value="name">姓名</Option>
+                      <Option value="idCard">身份证</Option>
+                      <Option value="mobile">手机号</Option>
+                    </Select>
+                    <Input style={{width: "calc(100% - 90px)"}} placeholder={"请输入搜索内容"} />
+                  </InputGroup>
                 </FormItem>
               </Col>
 
-              <Col span={8}>
-                <FormItem label="使用状态" labelCol={{span: 8}} wrapperCol={{span: 16}}>
-                  <Input placeholder="请输入选择"/>
+              <Col xs={24} sm={8} md={6} xxl={12}>
+                <FormItem labelCol={{span: 0}} wrapperCol={{span: 24}}>
+                  <Button type="primary">查询</Button>
+                  <Button style={{marginLeft: "8px"}}>重置</Button>
                 </FormItem>
-              </Col>
-            </Row>
-
-            <Row gutter={24}>
-              <Col style={{textAlign: "right"}}>
-                <Button type="primary">查询</Button>
-                <Button style={{marginLeft: "8px"}}>重置</Button>
               </Col>
             </Row>
           </Form>

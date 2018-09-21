@@ -5,11 +5,11 @@ const rewireWebpackOutput = require('react-app-rewire-output');
 
 module.exports = function override(config, env) {
   config = injectBabelPlugin(['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }, {libraryName: 'bizcharts', libraryDirectory: 'es6'}], config);
-  if ('development' !== env) {
-    config = rewireWebpackOutput(config, env, {
-      publicPath: '/admin-1/'
-    })
-  }
+  // if ('development' !== env) {
+  //   config = rewireWebpackOutput(config, env, {
+  //     publicPath: '/admin-1/'
+  //   })
+  // }
 
   config = rewireLess(config, env);
   config = rewireLess.withLoaderOptions({

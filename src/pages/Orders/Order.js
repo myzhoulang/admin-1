@@ -2,10 +2,12 @@ import React, {Component} from "react";
 import {Button, Dropdown, Menu, Icon, Row, Col, Badge, Tabs, Card} from "antd";
 import {observable, action} from "mobx";
 import {observer} from "mobx-react";
-
+import Loadable from "../../utils/Loading";
 
 import BaseInfo from "./BaseInfo";
 import AddressBooks from "./AddressBooks";
+import ThirdPartyData from "./ThirdPartyData";
+import HistrotyEntry from "./HistrotyEntry";
 import pStyle from '../../index.module.less';
 import "./order.less";
 import MainContent from "../../layouts/MainContent";
@@ -42,13 +44,13 @@ export default class Orders extends Component {
     </Menu>;
     const action = <React.Fragment>
       <ButtonGroup>
-        <Button>操作一</Button>
-        <Button>操作二</Button>
+        <Button onClick={() => this.props.history.go(-1)}>返回</Button>
+        <Button>催单</Button>
         <Dropdown overlay={menu}>
           <Button><Icon type={'ellipsis'}/></Button>
         </Dropdown>
       </ButtonGroup>
-      <Button style={{marginLeft: 8}} type={'primary'}>主操作</Button>
+      <Button style={{marginLeft: 8}} type={'primary'}>审核</Button>
     </React.Fragment>;
     const content = <div className={pStyle.componentsDescList}>
       <Row gutter={24}>
@@ -90,35 +92,14 @@ export default class Orders extends Component {
         </Col>
       </Row>
     </React.Fragment>;
+
     const tabBarExtraContent = null;
-    const baseInfo = <Card title="Card title" bordered={false}>
-      <p>1</p>
-      <p>1</p>
-      <p>1</p>
-    </Card>;
-    const MailList = <Card title="Card title" bordered={false}>
-      <p>2</p>
-      <p>2</p>
-      <p>3</p>
-    </Card>;
-
-    const ThirdPartyData = <Card title="Card title" bordered={false}>
-      <p>3</p>
-      <p>3</p>
-      <p>3</p>
-    </Card>;
-
-    const HistrotyEntry = <Card title="Card title" bordered={false}>
-      <p>4</p>
-      <p>4</p>
-      <p>4</p>
-    </Card>;
 
     const tabList = [
-      {tab: '基本信息', key: 'BaseInfo', component: <BaseInfo />},
-      {tab: '通讯录', key: 'MailList', component: <AddressBooks />},
-      {tab: '第三方数据', key: 'ThirdPartyData', component: ThirdPartyData},
-      {tab: '历史进件', key: 'HistrotyEntry', component: HistrotyEntry},
+      {tab: '基本信息', key: 'BaseInfo', component: <BaseInfo/>},
+      {tab: '通讯录', key: 'MailList', component: <AddressBooks/>},
+      {tab: '第三方数据', key: 'ThirdPartyData', component: <ThirdPartyData/>},
+      {tab: '历史进件', key: 'HistrotyEntry', component: <HistrotyEntry/>},
     ];
 
     const tab = tabList.find((item) => item.key === this.activeKey) || {};
@@ -134,7 +115,6 @@ export default class Orders extends Component {
         extraContent={extraContent}
         onChangeTab={this.tabChange}
         tabBarExtraContent={tabBarExtraContent}>
-
         <div>
           {component}
         </div>

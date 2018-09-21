@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {observable, action, runInAction, computed} from "mobx";
 import {observer} from "mobx-react";
-import {Table, Card, Form, Row, Col, Input, Select, Button, Icon, DatePicker, Alert, Spin, Modal} from 'antd';
+import {Table, Card, Form, Row, Col, Input, Select, Button, Icon, DatePicker, Alert, Spin, Modal, Divider} from "antd";
 import {Link} from "react-router-dom";
 
 import MainContent from "../../layouts/MainContent"
@@ -32,14 +32,15 @@ export default class List extends Component {
   }
 
 
-  delete (user) {
+  delete (e, user) {
+    e.preventDefault();
     confirm({
       title: `确认删除${user.name}用户`,
       content: `删除后，用户将不在保存， 请谨慎操作`,
       onOk () {
         return new Promise((resolve, reject) => {
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-        }).catch(() => console.log('Oops errors!'));
+        }).catch(() => console.log("Oops errors!"));
       }
     })
   }
@@ -60,46 +61,46 @@ export default class List extends Component {
 
   render () {
     const columns = [{
-      title: '姓名',
-      dataIndex: 'name',
-      key: 'name',
+      title: "姓名",
+      dataIndex: "name",
+      key: "name",
       sorter: (a, b) => a.name.length - b.name.length,
       filters: [
-        {text: '钱超', value: '钱超'},
-        {text: '邓磊', value: '邓磊'},
+        {text: "钱超", value: "钱超"},
+        {text: "邓磊", value: "邓磊"},
       ],
       onFilter: (value, record) => record.name.includes(value),
     }, {
-      title: '年龄',
-      dataIndex: 'age',
-      key: 'age',
+      title: "年龄",
+      dataIndex: "age",
+      key: "age",
       sorter: (a, b) => a.age - b.age,
     }, {
-      title: '住址',
-      dataIndex: 'address',
-      key: 'address',
-      width: 200
+      title: "住址",
+      dataIndex: "address",
+      key: "address",
+      width: "25%"
     }, {
-      title: '创建时间',
-      dataIndex: 'createTime',
-      key: 'createTime'
+      title: "创建时间",
+      dataIndex: "createTime",
+      key: "createTime"
     }, {
-      title: '调用次数(次)',
-      dataIndex: 'call',
-      key: 'call',
+      align: "right",
+      title: "调用次数(次)",
+      dataIndex: "call",
+      key: "call",
       sorter: (a, b) => a.call - b.call
     },{
-      title: '操作',
-      dataIndex: '',
-      key: 'x',
+      align: "center",
+      title: "操作",
+      dataIndex: "",
+      key: "x",
       render: (user) => {
         return (
           <div>
-            <Button icon={"edit"} type={"primary"}>
-              <Link  style={{color: '#fff'}} to={`/admin/users/${user.id}`}>编辑</Link>
-            </Button>
-            <Button style={{marginLeft: "15px"}} onClick={() => this.delete(user)} icon={"delete"}
-                    type={"danger"}>删除</Button>
+            <Link to={`/admin/users/${user.id}`}>编辑</Link>
+            <Divider type={"vertical"}/>
+            <a href={""} onClick={(e) => this.delete(e, user)}>删除</a>
           </div>
         );
       }
@@ -108,13 +109,13 @@ export default class List extends Component {
     const rowSelection = {
       onChange: (selectedKeys, selectedUsers) => this.onSelectChange(selectedUsers),
       getCheckboxProps: record => ({
-        disabled: record.name === 'Disabled User',
+        disabled: record.name === "Disabled User",
         name: record.name,
       }),
     };
 
     return (
-      <MainContent title={'用户管理'} content={'用户管理描述'}>
+      <MainContent title={"用户管理"} content={"用户管理描述"}>
         <Card bordered={false}>
           <Form>
             <Row gutter={24}>
@@ -175,7 +176,7 @@ export default class List extends Component {
             </Row>
           </Form>
 
-          <div className={'table-operations'}>
+          <div className={"table-operations"}>
             <Button type="primary" onClick={() => this.props.history.push("/admin/users/")}><Icon type="plus" theme="outlined"/>新建</Button>
             <Button type="primary" style={{marginLeft: "8px"}}><Icon type="file-excel" theme="outlined"/>导出</Button>
             <Button type="primary" style={{marginLeft: "8px"}}><Icon type="printer" theme="outlined"/>打印</Button>
