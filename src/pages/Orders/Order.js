@@ -2,14 +2,12 @@ import React, {Component} from "react";
 import {Button, Dropdown, Menu, Icon, Row, Col, Badge, Tabs, Card} from "antd";
 import {observable, action} from "mobx";
 import {observer} from "mobx-react";
-import Loadable from "../../utils/Loading";
 
 import BaseInfo from "./BaseInfo";
 import AddressBooks from "./AddressBooks";
 import ThirdPartyData from "./ThirdPartyData";
 import HistrotyEntry from "./HistrotyEntry";
 import pStyle from '../../index.module.less';
-import "./order.less";
 import MainContent from "../../layouts/MainContent";
 
 

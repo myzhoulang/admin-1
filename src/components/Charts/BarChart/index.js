@@ -1,11 +1,4 @@
 import React from "react";
-// import {
-//   Chart,
-//   Geom,
-//   Axis,
-//   Tooltip,
-//   Legend,
-// } from "bizcharts";
 import Chart from 'bizcharts/lib/components/Chart';
 import Axis from 'bizcharts/lib/components/Axis';
 import Tooltip from 'bizcharts/lib/components/Tooltip';

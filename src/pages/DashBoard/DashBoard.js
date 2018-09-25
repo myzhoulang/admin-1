@@ -23,6 +23,7 @@ export default class DashBoard extends Component {
   }
 
   componentDidMount () {
+    // TODO 请求数据
     this.setStatus()
   }
 

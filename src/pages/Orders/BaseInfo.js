@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 
 export default class BaseInfo extends Component{
   render () {
+    // TODO 模拟数据
     const basicData = {
       "姓名": "刘泽隆",
       "性别": "男",
@@ -25,7 +26,7 @@ export default class BaseInfo extends Component{
       "用户分层": "",
       "是否复贷": "",
       "芝麻分": "数据获取失败"
-    }
+    };
     const contactsClo = [{
       title: '联系人关系',
       dataIndex: 'relation',

@@ -37,7 +37,8 @@ class HeaderView extends Component {
 
     return (
       <Header className={HeaderStyle.header}>
-        <div className={HeaderStyle.globalHeaderIndexHeader} style={{boxShadow: '0 1px 4px rgba(0,21,41,.08)'}}>
+        <div className={HeaderStyle.globalHeaderIndexHeader}>
+
           <Icon
             className={HeaderStyle.trigger}
             type={appStore.siderMenuCollapsed? 'menu-unfold' : 'menu-fold'}
@@ -45,14 +46,21 @@ class HeaderView extends Component {
           />
 
           <div className={HeaderStyle.globalHeaderIndexRight}>
+            <a href="/" className={HeaderStyle.globalHeaderIndexAction}>
+              <Icon type="fullscreen" theme="outlined" />
+            </a>
+
+            {/*帮助*/}
             <Tooltip placement="top" title={'使用文档'}>
               <a href="/" className={HeaderStyle.globalHeaderIndexAction}>
                 <Icon type="question-circle" />
               </a>
             </Tooltip>
 
+            {/*通知*/}
             <Notices/>
 
+            {/*登录用户*/}
             <Dropdown
               overlay={accountContent}
             >
@@ -61,6 +69,8 @@ class HeaderView extends Component {
                   <span>zhoulang</span>
                 </span>
             </Dropdown>
+
+            {/*语言选择*/}
             <Button htmlType={'button'} size="small" style={{margin: '0 8px'}}>English</Button>
           </div>
         </div>

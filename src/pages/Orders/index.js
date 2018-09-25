@@ -32,7 +32,8 @@ export default class List extends Component {
     this.loading = status;
   }
 
-  delete(user) {
+  // 删除用户
+  delete(user = {}) {
     confirm({
       title: `确认删除${user.name}用户`,
       content: `删除后，用户将不在保存， 请谨慎操作`,

@@ -30,7 +30,6 @@ class UserForm extends Component {
 
   Submit = (e) => {
     e.preventDefault();
-
     this.setLoading(true);
     this.props.form.validateFields((err, values) => {
       if (!err) {
