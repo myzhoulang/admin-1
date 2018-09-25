@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Avatar, Button, Icon, Layout, Dropdown, Menu, Tooltip} from "antd";
 import {observer} from "mobx-react";
 import {withRouter} from "react-router-dom";
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 import Notices from './Notices'
 import userAvatar from "../../assets/images/user.png";
