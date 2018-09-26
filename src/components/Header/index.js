@@ -1,16 +1,16 @@
 import React, {Component} from "react";
 import {Avatar, Button, Icon, Layout, Dropdown, Menu, Tooltip} from "antd";
-import {observer} from "mobx-react";
+import {observer, inject} from "mobx-react";
 import {withRouter} from "react-router-dom";
 import PropTypes from 'prop-types';
 
 import Notices from './Notices'
 import userAvatar from "../../assets/images/user.png";
-import appStore from "../../store/app"
 import HeaderStyle from './index.module.less';
 
 const {Header} = Layout;
 
+@inject('store')
 @observer
 class HeaderView extends Component {
 
@@ -41,8 +41,8 @@ class HeaderView extends Component {
 
           <Icon
             className={HeaderStyle.trigger}
-            type={appStore.siderMenuCollapsed? 'menu-unfold' : 'menu-fold'}
-            onClick={appStore.toggleSiderMenuCollapsed}
+            type={this.props.store.siderMenuCollapsed? 'menu-unfold' : 'menu-fold'}
+            onClick={this.props.store.toggleSiderMenuCollapsed}
           />
 
           <div className={HeaderStyle.globalHeaderIndexRight}>

@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {Layout} from "antd";
-
 import {withRouter} from "react-router-dom";
 import {Provider} from "mobx-react";
 
