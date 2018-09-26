@@ -2,8 +2,9 @@ import React, {Component} from "react";
 import {Layout} from "antd";
 
 import {withRouter} from "react-router-dom";
+import {Provider} from "mobx-react";
 
-
+import appStore from "../store/app";
 import SiderMenu from "../components/SiderMenu";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -18,18 +19,20 @@ class BasicLayout extends Component {
 
   render () {
     return (
-      <Layout>
-        <SiderMenu collapsed={this.collapsed}/>
+      <Provider store={appStore}>
         <Layout>
-          <Header/>
-          <Content style={{margin: '24px 24px 0'}}>
-            <div  style={{margin: '-24px -24px 0'}}>
-              {this.props.children}
-            </div>
-          </Content>
-          <Footer/>
+          <SiderMenu collapsed={this.collapsed}/>
+          <Layout>
+            <Header/>
+            <Content style={{margin: '24px 24px 0'}}>
+              <div style={{margin: '-24px -24px 0'}}>
+                {this.props.children}
+              </div>
+            </Content>
+            <Footer/>
+          </Layout>
         </Layout>
-      </Layout>
+      </Provider>
     )
   }
 }
