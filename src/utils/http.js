@@ -4,7 +4,9 @@ const API_ENV = process.env.REACT_APP_SECRET_API;
 const envUrl = require('../../package.json').envUrl;
 
 // 这里的baseURL 只是在单个API域名或其他代理方式下使用
-// 其他代理方式 可以在 pageake.json 中添加 proxy 属性 删除掉 envUrl 属性
+// 其他代理方式 可以在 pageake.json 中添加 proxy 属性 删除掉 envUrl
+//
+// 属性
 // @example proxy 方式
 // {proxy: 'https://api.fulik.com'...}
 const baseURL = envUrl[API_ENV].API_URL;
