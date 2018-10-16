@@ -1,14 +1,12 @@
 import {observable, action} from "mobx";
+import http from '../utils/http';
 
 class User {
   @observable users = [];
 
   @action.bound
   getUsers () {
-    return fetch("/api/users", {
-      method: "get",
-      headers: {"Content-Type": "application/json"}
-    })
+    return http.get(`/users`)
       .then((res) => {
         if (res.ok) {
           return res.json();

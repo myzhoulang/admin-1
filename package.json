@@ -2,18 +2,29 @@
   "name": "admin-1",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://47.98.62.21:3008",
+  "envUrl": {
+    "dev": {
+      "API_URL": "http://127.0.0.1:8080/api"
+    },
+    "test": {
+      "API_URL": "http://127.0.0.1:3000/api"
+    },
+    "prod": {
+      "API_URL": "http://127.0.0.1:8050/api"
+    }
+  },
   "homepage": ".",
   "dependencies": {
     "@antv/data-set": "^0.9.5",
     "antd": "^3.9.2",
+    "axios": "^0.18.0",
     "babel-plugin-import": "^1.8.0",
     "bizcharts": "^3.2.2",
     "classnames": "^2.2.6",
+    "cross-env": "^5.2.0",
     "gh-pages": "^2.0.0",
     "mobx": "^5.1.0",
     "mobx-react": "^5.2.6",
-    "path-to-regexp": "^2.4.0",
     "react": "^16.5.0",
     "react-app-rewire-less-modules": "1.1.0",
     "react-app-rewire-mobx": "^1.0.9",
@@ -23,12 +34,14 @@
     "react-dom": "^16.5.0",
     "react-loadable": "^5.5.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "src": "^2.4.0"
   },
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "start": "cross-env REACT_APP_SECRET_API=dev react-app-rewired start",
+    "build:test": "cross-env REACT_APP_SECRET_API=test react-app-rewired build",
+    "build:prod": "cross-env REACT_APP_SECRET_API=prod react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
