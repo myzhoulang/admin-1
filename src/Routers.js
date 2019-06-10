@@ -52,6 +52,7 @@ export default class Routers extends Component {
             )}/>
             {this.props.children}
             <Redirect from='/' to='/admin/dashboard'/>
+            <Redirect from='/admin' to='/admin/dashboard'/>
           </Switch>
         </Layout>
       </HashRouter>
